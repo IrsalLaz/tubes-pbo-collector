@@ -42,19 +42,50 @@ public class TubesPboCollector {
             // insertIntoDepartement(conn);
 
             // ITEMS
-//            insertIntoItems(conn);
+            insertIntoItems(conn);
             
             // Issues
-//            insertIntoIssues(conn);
+            insertIntoIssues(conn);
             
             // Employees
-//            insertIntoEmployees(conn);
+            insertIntoEmployees(conn);
 
         } catch (SQLException ex) {
             System.out.println("Eksepsi akses data: " + ex.getMessage());
         }
     }
     
+    private static void insertIntoUsers(String kueri, Connection conn) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement(kueri);
+        ps.setString(1, "Panji Dwi Satrio");
+        ps.setString(2, "panjidwi123");
+        
+        Timestamp tmp = new Timestamp(System.currentTimeMillis());
+        
+        ps.setTimestamp(3, tmp);
+        ps.setTimestamp(4, tmp);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        rs.close();
+        ps.close();
+    }
+    
+    private static void insertIntoCategory(String kueri, Connection conn) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement(kueri);
+        ps.setString(1, "Alat Makan");
+        
+        Timestamp tmp = new Timestamp(System.currentTimeMillis());
+        
+        ps.setTimestamp(2, tmp);
+        ps.setTimestamp(3, tmp);
+        
+        ResultSet rs = ps.executeQuery();
+        
+        rs.close();
+        ps.close();
+    }
+
      private static void insertIntoCompanies(Connection conn) throws SQLException {
         String kueri = "INSERT INTO companies(id, name, address, email, phone, created_at, updated_at) VALUES(?,?,?,?,?,?,?)";
         
