@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.ResultSet;
 
 /**
  *
@@ -71,7 +72,11 @@ public class TubesPboCollector {
         ps.close();
     }
     
-    private static void insertIntoCategory(String kueri, Connection conn) throws SQLException {
+    private static void insertIntoCategory(Connection conn) throws SQLException {
+        String kueri = "INSERT INTO categories("
+                + "name, "
+                + "created_at, "
+                + "updated_at) VALUES (?,?,?)";
         PreparedStatement ps = conn.prepareStatement(kueri);
         ps.setString(1, "Alat Makan");
         
@@ -87,7 +92,14 @@ public class TubesPboCollector {
     }
 
      private static void insertIntoCompanies(Connection conn) throws SQLException {
-        String kueri = "INSERT INTO companies(id, name, address, email, phone, created_at, updated_at) VALUES(?,?,?,?,?,?,?)";
+        String kueri = "INSERT INTO companies("
+                + "name, "
+                + "address, "
+                + "email, "
+                + "phone, "
+                + "created_at, "
+                + "updated_at) "
+                + "VALUES(?,?,?,?,?,?,?)";
         
         PreparedStatement ps = conn.prepareStatement(kueri);
         ps.setInt(1, 1);
@@ -105,10 +117,13 @@ public class TubesPboCollector {
     }
 
     private static void insertIntoDepartement(Connection conn) throws SQLException {
-        String kueri = "INSERT INTO departments(id, name, created_at, updated_at) VALUES(?,?,?,?)";
+        String kueri = "INSERT INTO departments("
+                + "name, "
+                + "created_at, "
+                + "updated_at) "
+                + "VALUES(?,?,?,?)";
         
         PreparedStatement ps = conn.prepareStatement(kueri);
-        ps.setInt(1, 1);
         ps.setString(2, "Marketing");
 
         Timestamp tmp = new Timestamp(System.currentTimeMillis());
@@ -121,10 +136,18 @@ public class TubesPboCollector {
     }
 
     private static void insertIntoItems(Connection conn) throws SQLException {
-        String kueri = "INSERT INTO items(id, item_code, category_id, name, company_id, quantity, low_stock_level, created_at, updated_at) VALUES(?,?,?,?,?,?,?,?,?)";
+        String kueri = "INSERT INTO items("
+                + "item_code, "
+                + "category_id, "
+                + "name, "
+                + "company_id, "
+                + "quantity, "
+                + "low_stock_level, "
+                + "created_at, "
+                + "updated_at) "
+                + "VALUES(?,?,?,?,?,?,?,?,?)";
         
         PreparedStatement ps = conn.prepareStatement(kueri);
-        ps.setInt(1, 1);
         ps.setString(2, "B001");
         ps.setInt(3, 1);
         ps.setString(4, "Indomie");
@@ -141,10 +164,16 @@ public class TubesPboCollector {
     }
     
     private static void insertIntoIssues(Connection conn) throws SQLException {
-        String kueri = "INSERT INTO issues(id, item_id, employee_id, issue_by, quantity, created_at, updated_at) VALUES(?,?,?,?,?,?,?)";
+        String kueri = "INSERT INTO issues("
+                + "item_id, "
+                + "employee_id, "
+                + "issue_by, "
+                + "quantity, "
+                + "created_at, "
+                + "updated_at) "
+                + "VALUES(?,?,?,?,?,?,?)";
         
         PreparedStatement ps = conn.prepareStatement(kueri);
-        ps.setInt(1, 1);
         ps.setInt(2, 1);
         ps.setInt(3, 1);
         ps.setString(4, "Andi");
@@ -159,10 +188,15 @@ public class TubesPboCollector {
     }
     
     private static void insertIntoEmployees(Connection conn) throws SQLException {
-        String kueri = "INSERT INTO issues(id, nik, name, department_id, created_at, updated_at) VALUES(?,?,?,?,?,?)";
+        String kueri = "INSERT INTO issues("
+                + "nik, "
+                + "name, "
+                + "department_id, "
+                + "created_at, "
+                + "updated_at) "
+                + "VALUES(?,?,?,?,?,?)";
         
         PreparedStatement ps = conn.prepareStatement(kueri);
-        ps.setInt(1, 1);
         ps.setString(2, "123456789");
         ps.setString(3, "Agus");
         ps.setInt(4, 1);
