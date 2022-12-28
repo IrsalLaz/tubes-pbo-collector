@@ -26,9 +26,11 @@ public class ItemController {
         conn.dbConn(dataSource);
     }
     
-    public void addItem(
+    public void addItemData(
             Component parentComponent, 
-            String textName, 
+            String textName,
+            int textCategoryId,
+            int textCompanyId,
             int textQty, 
             int textLowStock,
             DefaultTableModel tableModel
@@ -58,11 +60,47 @@ public class ItemController {
                             JOptionPane.WARNING_MESSAGE
                     ); 
                 } else {
-                    String insertQuery = "INSERT INTO items(name, quantity, low_stock_quantity) VALUES(?,?,?)";
+                    String insertQuery = "INSERT INTO items("
+                            + "name, "
+                            + "quantity, "
+                            + "low_stock_quantity, "
+                            + "category_id, "
+                            + "company_id) "
+                            + "VALUES(?,?,?,?,?)";
+                    
+                    PreparedStatement ps = conn.prepareStatement(insertQuery);
+                    ps.setString(1, textName);
+                    ps.setInt(2, textQty);
+                    ps.setInt(3, textLowStock);
+                    ps.setInt(4, textCategoryId);
+                    ps.setInt(5, textCompanyId);
+                    ps.executeUpdate();
+                    
+                    addItem(new Item(
+                            textName,
+                            textQty,
+                            textLowStock,
+                            textCategoryId,
+                            textCompanyId
+                    ));
+                    
+                    int index = itemList.size() - 1;
+                    
+                    tableModel.addRow(new Object[] {
+                        itemList.get(index).getName(),
+                        itemList.get(index).getQuantity(),
+                        itemList.get(index).getLow_stock_level(),
+                        itemList.get(index).getCategory_id(),
+                        itemList.get(index).getCompany_id()
+                    });
                 }
             }
         } catch(SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    public void addItem(Item item) {
+        itemList.add(item);
     }
 }
