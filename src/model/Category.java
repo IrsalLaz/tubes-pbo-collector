@@ -9,19 +9,17 @@ package model;
  * @author panji
  */
 public class Category {
-    private String name;
-    private String description;
+    private String category_name;
 
-    public Category(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public Category(String category_name) {
+        this.category_name = category_name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategory_name() {
+        return category_name;
     }
 
-    public String getName() {
-        return name;
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
     }
 }
