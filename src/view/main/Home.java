@@ -64,7 +64,6 @@ public class Home extends javax.swing.JFrame {
         inputKBarang = new javax.swing.JTextField();
         inputNBarang = new javax.swing.JTextField();
         labelNamaBarang = new javax.swing.JLabel();
-        inputSuplier = new javax.swing.JTextField();
         labelSuplier = new javax.swing.JLabel();
         labelJumlah = new javax.swing.JLabel();
         inputJumlah = new javax.swing.JTextField();
@@ -87,6 +86,7 @@ public class Home extends javax.swing.JFrame {
         cdKategoriEdit = new javax.swing.JComboBox<>();
         labelJumlahEdit = new javax.swing.JLabel();
         inputJumlahEdit = new javax.swing.JTextField();
+        cbSuplier2 = new javax.swing.JComboBox<>();
         laporBarangPage = new javax.swing.JPanel();
         header4 = new javax.swing.JDesktopPane();
         title4 = new javax.swing.JLabel();
@@ -432,6 +432,13 @@ public class Home extends javax.swing.JFrame {
         labelJumlahEdit.setForeground(new java.awt.Color(51, 51, 51));
         labelJumlahEdit.setText("Jumlah :");
 
+        cbSuplier2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSuplier2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSuplier2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tambahBarangPageLayout = new javax.swing.GroupLayout(tambahBarangPage);
         tambahBarangPage.setLayout(tambahBarangPageLayout);
         tambahBarangPageLayout.setHorizontalGroup(
@@ -442,29 +449,31 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tambahBarangPageLayout.createSequentialGroup()
                         .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelJumlah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(tambahBarangPageLayout.createSequentialGroup()
-                                .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(btnTambah)
-                                        .addGroup(tambahBarangPageLayout.createSequentialGroup()
-                                            .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(labelSuplierEdit1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(labelNamaBarang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                                                .addComponent(labelKodeBarang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(labelSuplier, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(inputKBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                                    .addComponent(inputNBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                                    .addComponent(inputSuplier, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                                                    .addComponent(cbSuplier1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addComponent(inputJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(tambahBarangPageLayout.createSequentialGroup()
-                                .addComponent(labelJumlah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tambahBarangPageLayout.createSequentialGroup()
+                                        .addComponent(labelSuplier, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbSuplier2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(btnTambah)
+                                            .addGroup(tambahBarangPageLayout.createSequentialGroup()
+                                                .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                    .addComponent(labelSuplierEdit1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(labelNamaBarang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                                    .addComponent(labelKodeBarang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(inputKBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                                        .addComponent(inputNBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                                                        .addComponent(cbSuplier1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                    .addComponent(inputJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(tambahBarangPageLayout.createSequentialGroup()
                                 .addComponent(inputCariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -486,7 +495,7 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(cdKategoriEdit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(inputJumlahEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tambahBarangPageLayout.setVerticalGroup(
             tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -504,11 +513,11 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labelNamaBarang)
                             .addComponent(inputNBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addGap(12, 12, 12)
+                        .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelSuplier)
-                            .addComponent(inputSuplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(cbSuplier2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
                         .addGroup(tambahBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbSuplier1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelSuplierEdit1)))
@@ -550,7 +559,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(inputCariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 39, Short.MAX_VALUE))
+                .addGap(0, 42, Short.MAX_VALUE))
         );
 
         panelPages.add(tambahBarangPage, "tambahBarangPage");
@@ -1211,6 +1220,10 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCariSuplierActionPerformed
 
+    private void cbSuplier2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSuplier2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbSuplier2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1269,6 +1282,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbNmBarang;
     private javax.swing.JComboBox<String> cbSuplier;
     private javax.swing.JComboBox<String> cbSuplier1;
+    private javax.swing.JComboBox<String> cbSuplier2;
     private javax.swing.JComboBox<String> cdKategoriEdit;
     private javax.swing.JDesktopPane header;
     private javax.swing.JDesktopPane header1;
@@ -1291,7 +1305,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField inputNPelapor;
     private javax.swing.JTextField inputNPerusahaan;
     private javax.swing.JTextField inputPencarian;
-    private javax.swing.JTextField inputSuplier;
     private javax.swing.JTextField inputTelepon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
