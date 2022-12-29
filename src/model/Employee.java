@@ -13,12 +13,18 @@ public class Employee {
     private String name;
     private String nip;
     private String model;
+    private int department_id;
 
-    public Employee(String epf_number, String name, String nip, String model) {
+    public Employee(String epf_number, String name, String nip, String model, int department_id) {
         this.epf_number = epf_number;
         this.name = name;
         this.nip = nip;
         this.model = model;
+        this.department_id = department_id;
+    }
+
+    public int getDepartment_id() {
+        return department_id;
     }
 
     public String getEpf_number() {
@@ -35,6 +41,10 @@ public class Employee {
 
     public String getModel() {
         return model;
+    }
+
+    public void setDepartment_id(int department_id) {
+        this.department_id = department_id;
     }
 
     public void setEpf_number(String epf_number) {

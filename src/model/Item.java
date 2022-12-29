@@ -8,18 +8,23 @@ package model;
  *
  * @author panji
  */
-public class Item {
-    private String name;
+public class Item extends Category {
+    private String item_name;
     private int quantity;
     private int low_stock_level;
-    private int category_id;
     private int company_id;
 
-    public Item(String name, int quantity, int low_stock_level, int category_id, int company_id) {
-        this.name = name;
+    public Item(
+            String item_name, 
+            int quantity, 
+            int low_stock_level, 
+            int company_id,
+            String category_name
+    ) {
+        super(category_name);
+        this.item_name = item_name;
         this.quantity = quantity;
         this.low_stock_level = low_stock_level;
-        this.category_id = category_id;
         this.company_id = company_id;
     }
 
@@ -27,24 +32,16 @@ public class Item {
         return low_stock_level;
     }
 
-    public String getName() {
-        return name;
+    public String getItemName() {
+        return item_name;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public int getCategory_id() {
-        return category_id;
-    }
-
     public int getCompany_id() {
         return company_id;
-    }
-
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
     }
 
     public void setCompany_id(int company_id) {
@@ -55,11 +52,16 @@ public class Item {
         this.low_stock_level = low_stock_level;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setItemName(String name) {
+        this.item_name = name;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    
+    @Override
+    public String getCategory_name() {
+        return super.getCategory_name();
     }
 }
