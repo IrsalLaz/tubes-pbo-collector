@@ -10,46 +10,47 @@ package model;
  */
 public class Company {
 
-    private String name;
+    private String company_name;
     private String addresss;
     private String email;
     private String phone;
-    private String designation;
 
-    public Company(String name, String addresss, String email, String phone, String designation) {
-        this.name = name;
+    public Company(String company_name, String addresss, String email, String phone) {
+        this.company_name = company_name;
         this.addresss = addresss;
         this.email = email;
         this.phone = phone;
-        this.designation = designation;
+    }
+
+    public String getCompany_name() {
+        return company_name;
     }
 
     public String getAddresss() {
         return addresss;
     }
 
-    public String getDesignation() {
-        return designation;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public Company() {
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 
     public void setAddresss(String addresss) {
         this.addresss = addresss;
     }
-    
-    
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

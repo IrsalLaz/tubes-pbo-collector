@@ -9,27 +9,47 @@ package model;
  * @author panji
  */
 public class Issue {
-    private String issue_by;
-    private String quantity;
+    private int stacks;
+    private String issue_description;
+    private Item item;
+    private Employee employee;
 
-    public Issue(String issue_by, String quantity) {
-        this.issue_by = issue_by;
-        this.quantity = quantity;
+    public Issue(int stacks, String issue_description, Item item, Employee employee) {
+        this.stacks = stacks;
+        this.issue_description = issue_description;
+        this.item = item;
+        this.employee = employee;
     }
 
-    public String getIssue_by() {
-        return issue_by;
+    public int getStacks() {
+        return stacks;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getIssue_description() {
+        return issue_description;
     }
 
-    public void setIssue_by(String issue_by) {
-        this.issue_by = issue_by;
+    public Item getItem() {
+        return item;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setStacks(int stacks) {
+        this.stacks = stacks;
+    }
+
+    public void setIssue_description(String issue_description) {
+        this.issue_description = issue_description;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

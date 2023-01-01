@@ -9,7 +9,7 @@ package model;
  * @author panji
  */
 public class Category {
-    private String category_name;
+    protected String category_name;
 
     public Category(String category_name) {
         this.category_name = category_name;
