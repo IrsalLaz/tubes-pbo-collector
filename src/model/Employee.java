@@ -12,8 +12,8 @@ public class Employee extends Department {
     protected String employee_name;
     protected String nip;
 
-    public Employee(String employee_name, String nip, String department_name) {
-        super(department_name);
+    public Employee(String employee_name, String nip, String department_name, int idDepartment) {
+        super(idDepartment, department_name);
         this.employee_name = employee_name;
         this.nip = nip;
     }
@@ -37,6 +37,16 @@ public class Employee extends Department {
     @Override
     public String getDepartment_name() {
         return super.getDepartment_name();
+    }
+
+    @Override
+    public int getId() {
+        return super.getId(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    public void setId(int id) {
+        super.setId(id); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
     @Override

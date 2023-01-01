@@ -1,10 +1,7 @@
 package controller;
 
-import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import model.Category;
 
 public class CategoryController {
@@ -12,7 +9,7 @@ public class CategoryController {
     private Connection conn;
     private final DBConnection db = new DBConnection();
     
-    public ArrayList<Category> getCategory() {
+    public ArrayList<Category> getCategoryList() {
         return categoryList;
     }
     

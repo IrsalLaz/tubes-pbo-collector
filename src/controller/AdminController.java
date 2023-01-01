@@ -69,12 +69,11 @@ public class AdminController {
     
     public void logout(
             JFrame jFrame,
-            Component parentComponent,
-            String current_user
+            Component parentComponent
     ) {
         JOptionPane.showMessageDialog(
                 parentComponent, 
-                current_user + " Berhasil logout",
+                "Berhasil logout",
                 "Login Page",
                 1
         );
@@ -97,7 +96,8 @@ public class AdminController {
         Home home = new Home();
 
         jFrame.dispose();
-        home.setSize(972, 632);
+        home.setTitle("Collector");
+        home.setSize(990, 720);
         home.setVisible(true);
     }
 

@@ -122,6 +122,32 @@ public class CompanyController {
                         JOptionPane.INFORMATION_MESSAGE
                 );
             } else {
+                boolean checkEmail = isValidEmailAddress(textEmail);
+
+                if (!checkEmail) {
+                    JOptionPane.showMessageDialog(
+                            parentComponent,
+                            "Alamat email tidak valid",
+                            "Suplier Page",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+
+                    return;
+                }
+
+                boolean checkPhone = isValidPhoneNumber(textTelepon);
+
+                if (!checkPhone) {
+                    JOptionPane.showMessageDialog(
+                            parentComponent,
+                            "Nomor telepon tidak valid",
+                            "Suplier Page",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+
+                    return;
+                }
+
                 String insertQuery = "INSERT INTO companies("
                         + "company_name, "
                         + "email, "
@@ -327,10 +353,10 @@ public class CompanyController {
     ) {
         try {
             conn = db.dbConn();
-            String searchQuery = "SELECT * FROM companies WHERE company_name = ?";
+            String searchQuery = "SELECT * FROM companies WHERE LOWER(company_name) LIKE ?";
 
             PreparedStatement ps = conn.prepareStatement(searchQuery);
-            ps.setString(1, search);
+            ps.setString(1, "%" + search.toLowerCase() + "%");
             ResultSet rs = ps.executeQuery();
             System.out.println(rs);
 
@@ -394,6 +420,11 @@ public class CompanyController {
 
             Statement state = conn.createStatement();
             ResultSet rset = state.executeQuery(query);
+
+            companyList.clear();
+
+            tableModel.setRowCount(0);
+            tableModel.fireTableRowsDeleted(0, companyList.size());
 
             while (rset.next()) {
                 String companyName = rset.getString("company_name");
