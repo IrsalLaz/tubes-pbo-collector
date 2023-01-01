@@ -5,13 +5,16 @@
 package controller;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  *
  * @author panji
  */
 public class DBConnection {
-    public void dbConn(MysqlDataSource dataSource) {
+    public Connection dbConn() throws SQLException {
+        MysqlDataSource dataSource = new MysqlDataSource();
         String DB_URL = "jdbc:mysql://localhost:3306/collector";
         String username = "root";
         String password = "";
@@ -19,5 +22,8 @@ public class DBConnection {
         dataSource.setURL(DB_URL);
         dataSource.setUser(username);
         dataSource.setPassword(password);
+        
+        Connection conn = dataSource.getConnection();
+        return conn;
     }
 }

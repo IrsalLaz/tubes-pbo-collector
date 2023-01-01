@@ -8,58 +8,39 @@ package model;
  *
  * @author panji
  */
-public class Employee {
-    private String epf_number;
-    private String name;
-    private String nip;
-    private String model;
-    private int department_id;
+public class Employee extends Department {
+    protected String employee_name;
+    protected String nip;
 
-    public Employee(String epf_number, String name, String nip, String model, int department_id) {
-        this.epf_number = epf_number;
-        this.name = name;
+    public Employee(String employee_name, String nip, String department_name) {
+        super(department_name);
+        this.employee_name = employee_name;
         this.nip = nip;
-        this.model = model;
-        this.department_id = department_id;
     }
 
-    public int getDepartment_id() {
-        return department_id;
-    }
-
-    public String getEpf_number() {
-        return epf_number;
-    }
-
-    public String getName() {
-        return name;
+    public String getEmployee_name() {
+        return employee_name;
     }
 
     public String getNip() {
         return nip;
     }
 
-    public String getModel() {
-        return model;
-    }
-
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
-    }
-
-    public void setEpf_number(String epf_number) {
-        this.epf_number = epf_number;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setEmployee_name(String employee_name) {
+        this.employee_name = employee_name;
     }
 
     public void setNip(String nip) {
         this.nip = nip;
-    }   
+    }
+
+    @Override
+    public String getDepartment_name() {
+        return super.getDepartment_name();
+    }
+
+    @Override
+    public void setDepartment_name(String department_name) {
+        super.setDepartment_name(department_name);
+    }
 }

@@ -8,17 +8,12 @@ package model;
  *
  * @author panji
  */
-public class Admin {
-    private String user_name;
+public class Admin extends Employee {
     private String password;
 
-    public Admin(String user_name, String password) {
-        this.user_name = user_name;
+    public Admin(String password, String employee_name, String nip, String department_name) {
+        super(employee_name, nip, department_name);
         this.password = password;
-    }
-
-    public String getUser_name() {
-        return user_name;
     }
 
     public String getPassword() {
@@ -29,7 +24,33 @@ public class Admin {
         this.password = password;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    @Override
+    public String getEmployee_name() {
+        return super.getEmployee_name();
+    }
+
+    @Override
+    public String getNip() {
+        return super.getNip();
+    }
+
+    @Override
+    public String getDepartment_name() {
+        return super.getDepartment_name();
+    }
+
+    @Override
+    public void setEmployee_name(String employee_name) {
+        super.setEmployee_name(employee_name);
+    }
+
+    @Override
+    public void setNip(String nip) {
+        super.setNip(nip);
+    }
+
+    @Override
+    public void setDepartment_name(String department_name) {
+        super.setDepartment_name(department_name);
     }
 }
