@@ -22,9 +22,11 @@ public class CategoryController {
             ResultSet rs = st.executeQuery(query);
             
             while(rs.next()) {
+                int id = rs.getInt("id");
                 String categoryName = rs.getString("category_name");
                 
                 addCategory(new Category(
+                        id,
                         categoryName
                 ));
             }

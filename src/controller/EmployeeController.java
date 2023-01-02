@@ -51,17 +51,17 @@ public class EmployeeController {
                 if (rs.next()) {
                     nip = rs.getString("nip");
                     name = rs.getString("employee_name");
-                }
 
-                if (textName.equalsIgnoreCase(name) || textNip.equals(nip)) {
-                    JOptionPane.showMessageDialog(
-                            parentComponent,
-                            "Karyawan sudah terdaftar",
-                            "Employee Page",
-                            JOptionPane.WARNING_MESSAGE
-                    );
+                    if (textName.equalsIgnoreCase(name) || textNip.equals(nip)) {
+                        JOptionPane.showMessageDialog(
+                                parentComponent,
+                                "Karyawan sudah terdaftar",
+                                "Employee Page",
+                                JOptionPane.WARNING_MESSAGE
+                        );
 
-                    return;
+                        return;
+                    }
                 }
 
                 boolean checkNip = isValidNip(textNip);

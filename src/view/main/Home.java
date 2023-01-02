@@ -79,13 +79,13 @@ public class Home extends javax.swing.JFrame {
 
     private void addItemComboBox() {
         // Company
-        cbSuplierBeli.removeAllItems();
-        cbSuplierBeli.addItem("Select Company");
+        cbPerusahaan.removeAllItems();
+        cbPerusahaan.addItem("Select Company");
         companyController.loadComboBoxItemCompany();
         ArrayList<Company> company = companyController.getCompanyList();
 
         for (Company c : company) {
-            cbSuplierBeli.addItem(c.getCompany_name());
+            cbPerusahaan.addItem(c.getCompany_name());
         }
 
         // Department
@@ -135,7 +135,7 @@ public class Home extends javax.swing.JFrame {
         btnCariBarang1 = new javax.swing.JButton();
         inputCariBarang1 = new javax.swing.JTextField();
         labelDeskripsi = new javax.swing.JLabel();
-        cbSuplierBeli = new javax.swing.JComboBox<>();
+        cbPerusahaan = new javax.swing.JComboBox<>();
         btnTambahPembelian = new javax.swing.JButton();
         jScrollPane9 = new javax.swing.JScrollPane();
         inputDeskripsiBarang = new javax.swing.JTextArea();
@@ -444,7 +444,7 @@ public class Home extends javax.swing.JFrame {
 
         labelSuplierBeli.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelSuplierBeli.setForeground(new java.awt.Color(51, 51, 51));
-        labelSuplierBeli.setLabelFor(cbSuplierBeli);
+        labelSuplierBeli.setLabelFor(cbPerusahaan);
         labelSuplierBeli.setText("Perusahaan:");
 
         labelJumlahPembelian.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -489,9 +489,10 @@ public class Home extends javax.swing.JFrame {
         labelDeskripsi.setLabelFor(inputDeskripsiBarang);
         labelDeskripsi.setText("Deskripsi");
 
-        cbSuplierBeli.addActionListener(new java.awt.event.ActionListener() {
+        cbPerusahaan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Company" }));
+        cbPerusahaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbSuplierBeliActionPerformed(evt);
+                cbPerusahaanActionPerformed(evt);
             }
         });
 
@@ -543,7 +544,7 @@ public class Home extends javax.swing.JFrame {
         labelKategori.setForeground(new java.awt.Color(51, 51, 51));
         labelKategori.setText("Kategori:");
 
-        cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Kategori" }));
         cbKategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbKategoriActionPerformed(evt);
@@ -580,7 +581,7 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(transaksiPageLayout.createSequentialGroup()
                                 .addComponent(labelSuplierBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbSuplierBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(transaksiPageLayout.createSequentialGroup()
                                 .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(labelJumlahPembelian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -626,7 +627,7 @@ public class Home extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelSuplierBeli)
-                            .addComponent(cbSuplierBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelKategori)
@@ -685,7 +686,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(header4Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(title4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(601, Short.MAX_VALUE))
+                .addContainerGap(607, Short.MAX_VALUE))
         );
         header4Layout.setVerticalGroup(
             header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -822,7 +823,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(inputCariLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         panelPages.add(laporBarangPage, "laporBarangPage");
@@ -895,7 +896,7 @@ public class Home extends javax.swing.JFrame {
         labelCompanyEdit.setForeground(new java.awt.Color(51, 51, 51));
         labelCompanyEdit.setText("Perusahaan:");
 
-        cbCompanyEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCompanyEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Perusahaan" }));
         cbCompanyEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCompanyEditActionPerformed(evt);
@@ -926,7 +927,7 @@ public class Home extends javax.swing.JFrame {
         labelKategoriEdit1.setForeground(new java.awt.Color(51, 51, 51));
         labelKategoriEdit1.setText("Kategori");
 
-        cbKategoriEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbKategoriEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Category" }));
         cbKategoriEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbKategoriEditActionPerformed(evt);
@@ -957,7 +958,7 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(inputKodeBarangEdit, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, stokPageLayout.createSequentialGroup()
                         .addComponent(btnSimpanBarang)
-                        .addGap(414, 414, 414))
+                        .addGap(2, 2, 2))
                     .addGroup(stokPageLayout.createSequentialGroup()
                         .addComponent(labelCompanyEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1036,7 +1037,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(header1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(601, Short.MAX_VALUE))
+                .addContainerGap(607, Short.MAX_VALUE))
         );
         header1Layout.setVerticalGroup(
             header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1299,7 +1300,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(header3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(601, Short.MAX_VALUE))
+                .addContainerGap(607, Short.MAX_VALUE))
         );
         header3Layout.setVerticalGroup(
             header3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1523,7 +1524,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btnHapusPencarianCompany))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 95, Short.MAX_VALUE))
+                .addGap(0, 99, Short.MAX_VALUE))
         );
 
         panelPages.add(suplierPage, "suplierPage");
@@ -2040,9 +2041,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbKodeBarangBeliJual;
     private javax.swing.JComboBox<String> cbKodeBarangLapor;
     private javax.swing.JComboBox<String> cbPelapor;
+    private javax.swing.JComboBox<String> cbPerusahaan;
     private javax.swing.JComboBox<String> cbPerusahaanJual;
     private javax.swing.JComboBox<String> cbStatus;
-    private javax.swing.JComboBox<String> cbSuplierBeli;
     private javax.swing.JDesktopPane header;
     private javax.swing.JDesktopPane header1;
     private javax.swing.JDesktopPane header2;

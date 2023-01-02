@@ -40,9 +40,8 @@ public class CompanyController {
 
                 if (rs.next()) {
                     name = rs.getString("company_name");
-                }
-
-                if (textName.equalsIgnoreCase(name)) {
+                    
+                    if (textName.equalsIgnoreCase(name)) {
                     JOptionPane.showMessageDialog(
                             parentComponent,
                             "Suplier sudah terdaftar",
@@ -51,6 +50,7 @@ public class CompanyController {
                     );
 
                     return;
+                }
                 }
 
                 boolean checkEmail = isValidEmailAddress(textEmail);
