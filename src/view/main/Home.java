@@ -100,7 +100,7 @@ public class Home extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane10 = new javax.swing.JScrollPane();
@@ -120,6 +120,8 @@ public class Home extends javax.swing.JFrame {
         transaksiPage = new javax.swing.JPanel();
         header = new javax.swing.JDesktopPane();
         title = new javax.swing.JLabel();
+        labelKodeBarangBeli = new javax.swing.JLabel();
+        inputKBarangBeli = new javax.swing.JTextField();
         inputNBarang = new javax.swing.JTextField();
         labelNamaBarang = new javax.swing.JLabel();
         labelSuplierBeli = new javax.swing.JLabel();
@@ -173,15 +175,15 @@ public class Home extends javax.swing.JFrame {
         labelKodeBarangEdit = new javax.swing.JLabel();
         labelNamaBarangEdit = new javax.swing.JLabel();
         labelDeskripsiEdit = new javax.swing.JLabel();
-        labelKategoriEdit = new javax.swing.JLabel();
-        cbKategoriEdit = new javax.swing.JComboBox<>();
+        labelCompanyEdit = new javax.swing.JLabel();
+        cbCompanyEdit = new javax.swing.JComboBox<>();
         inputNBarangEdit = new javax.swing.JTextField();
-        cbKodeBarangEdit = new javax.swing.JComboBox<>();
         jScrollPane8 = new javax.swing.JScrollPane();
         taDeskripsiEdit = new javax.swing.JTextArea();
         btnSimpanBarang = new javax.swing.JButton();
         labelKategoriEdit1 = new javax.swing.JLabel();
-        cbKategoriEdit1 = new javax.swing.JComboBox<>();
+        cbKategoriEdit = new javax.swing.JComboBox<>();
+        inputKodeBarangEdit = new javax.swing.JTextField();
         karyawanPage = new javax.swing.JPanel();
         header1 = new javax.swing.JDesktopPane();
         title1 = new javax.swing.JLabel();
@@ -227,7 +229,6 @@ public class Home extends javax.swing.JFrame {
         jScrollPane10.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(978, 720));
 
         jSplitPane1.setPreferredSize(new java.awt.Dimension(960, 638));
 
@@ -361,11 +362,13 @@ public class Home extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 250, Short.MAX_VALUE));
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 250, Short.MAX_VALUE)
+        );
 
         Sidebar.add(jPanel1);
 
@@ -403,19 +406,19 @@ public class Home extends javax.swing.JFrame {
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
-                headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(headerLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 151,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headerLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
         headerLayout.setVerticalGroup(
-                headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
-                                .addContainerGap(16, Short.MAX_VALUE)
-                                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)));
+            headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
 
         labelKodeBarangBeli.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelKodeBarangBeli.setForeground(new java.awt.Color(51, 51, 51));
@@ -444,15 +447,16 @@ public class Home extends javax.swing.JFrame {
         labelJumlahPembelian.setText("Jumlah :");
 
         tableTransaksi.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null, null },
-                        { null, null, null, null, null },
-                        { null, null, null, null, null },
-                        { null, null, null, null, null }
-                },
-                new String[] {
-                        "transaction_id", "item name", "company", "amount", "action"
-                }));
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "transaction_id", "item name", "company", "amount", "action"
+            }
+        ));
         tableTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableTransaksiMouseClicked(evt);
@@ -502,8 +506,7 @@ public class Home extends javax.swing.JFrame {
         labelKodeBarangBeliJual.setForeground(new java.awt.Color(51, 51, 51));
         labelKodeBarangBeliJual.setText("Kode barang: ");
 
-        cbKodeBarangBeliJual.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbKodeBarangBeliJual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbKodeBarangBeliJual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbKodeBarangBeliJualActionPerformed(evt);
@@ -514,8 +517,7 @@ public class Home extends javax.swing.JFrame {
         labelPerusahaanJual.setForeground(new java.awt.Color(51, 51, 51));
         labelPerusahaanJual.setText("Perusahaan");
 
-        cbPerusahaanJual.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPerusahaanJual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbPerusahaanJual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbPerusahaanJualActionPerformed(evt);
@@ -535,8 +537,7 @@ public class Home extends javax.swing.JFrame {
         labelKategori.setForeground(new java.awt.Color(51, 51, 51));
         labelKategori.setText("Kategori:");
 
-        cbKategori.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbKategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbKategoriActionPerformed(evt);
@@ -546,226 +547,119 @@ public class Home extends javax.swing.JFrame {
         javax.swing.GroupLayout transaksiPageLayout = new javax.swing.GroupLayout(transaksiPage);
         transaksiPage.setLayout(transaksiPageLayout);
         transaksiPageLayout.setHorizontalGroup(
-                transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(header)
-                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(transaksiPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transaksiPageLayout
-                                                .createSequentialGroup()
-                                                .addComponent(inputCariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnCariBarang1)
-                                                .addGap(12, 12, 12))
-                                        .addComponent(jScrollPane1)
-                                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                                .addGroup(transaksiPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                false)
-                                                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                                                .addComponent(labelJumlahPembelian,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 76,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(41, 41, 41)
-                                                                .addComponent(inputJumlahPembelian))
-                                                        .addComponent(labelPembelian,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 111,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                                                .addComponent(labelDeskripsi,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 111,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addGroup(transaksiPageLayout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                        .addComponent(btnTambahPembelian)
-                                                                        .addComponent(jScrollPane9,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                234,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                                                .addComponent(labelNamaBarang,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 111,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(inputNBarang,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 234,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                                                .addComponent(labelSuplierBeli,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 111,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(cbSuplierBeli,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 234,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                                                .addComponent(labelKategori,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 111,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(cbKategori,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 234,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(39, 39, 39)
-                                                .addGroup(transaksiPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                                                .addComponent(labelPembelian1,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 111,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(258, 329, Short.MAX_VALUE))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                transaksiPageLayout.createSequentialGroup()
-                                                                        .addGroup(transaksiPageLayout
-                                                                                .createParallelGroup(
-                                                                                        javax.swing.GroupLayout.Alignment.TRAILING)
-                                                                                .addGroup(transaksiPageLayout
-                                                                                        .createSequentialGroup()
-                                                                                        .addComponent(
-                                                                                                labelKodeBarangBeliJual,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                                111,
-                                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                                        .addPreferredGap(
-                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                        .addComponent(
-                                                                                                cbKodeBarangBeliJual, 0,
-                                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                Short.MAX_VALUE))
-                                                                                .addGroup(transaksiPageLayout
-                                                                                        .createSequentialGroup()
-                                                                                        .addGroup(transaksiPageLayout
-                                                                                                .createParallelGroup(
-                                                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                                        false)
-                                                                                                .addComponent(
-                                                                                                        labelJumlahPenjualan,
-                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                        Short.MAX_VALUE)
-                                                                                                .addComponent(
-                                                                                                        labelPerusahaanJual,
-                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                        111,
-                                                                                                        Short.MAX_VALUE))
-                                                                                        .addPreferredGap(
-                                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                                        .addGroup(transaksiPageLayout
-                                                                                                .createParallelGroup(
-                                                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                                .addComponent(
-                                                                                                        cbPerusahaanJual,
-                                                                                                        0,
-                                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                                        Short.MAX_VALUE)
-                                                                                                .addComponent(
-                                                                                                        inputJumlahPenjualan)))
-                                                                                .addGroup(transaksiPageLayout
-                                                                                        .createSequentialGroup()
-                                                                                        .addGap(0, 0, Short.MAX_VALUE)
-                                                                                        .addComponent(
-                                                                                                btnTambahPenjualan)))
-                                                                        .addGap(36, 36, 36)))))));
-        transaksiPageLayout.setVerticalGroup(
-                transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                .addGroup(transaksiPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(transaksiPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(labelPembelian1,
-                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(labelPembelian,
-                                                                javax.swing.GroupLayout.Alignment.TRAILING))
-                                                .addGap(47, 47, 47)
-                                                .addGroup(transaksiPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(labelSuplierBeli)
-                                                        .addComponent(cbSuplierBeli,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(transaksiPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(labelKategori)
-                                                        .addComponent(cbKategori,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(transaksiPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(labelJumlahPembelian)
-                                                        .addComponent(inputJumlahPembelian,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(transaksiPageLayout.createSequentialGroup()
-                                                .addGap(130, 130, 130)
-                                                .addGroup(transaksiPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(labelKodeBarangBeliJual)
-                                                        .addComponent(cbKodeBarangBeliJual,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(labelNamaBarang)
-                                                        .addComponent(inputNBarang,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(7, 7, 7)
-                                                .addGroup(transaksiPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(labelPerusahaanJual)
-                                                        .addComponent(cbPerusahaanJual,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(8, 8, 8)
-                                                .addGroup(transaksiPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(inputJumlahPenjualan,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(labelJumlahPenjualan))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(btnTambahPenjualan)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(transaksiPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelDeskripsi)
-                                        .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40,
-                                        Short.MAX_VALUE)
-                                .addComponent(btnTambahPembelian)
-                                .addGap(18, 18, 18)
-                                .addGroup(transaksiPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(inputCariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnCariBarang1))
+            transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(header)
+            .addGroup(transaksiPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transaksiPageLayout.createSequentialGroup()
+                        .addComponent(inputCariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCariBarang1)
+                        .addGap(12, 12, 12))
+                    .addComponent(jScrollPane1)
+                    .addGroup(transaksiPageLayout.createSequentialGroup()
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(transaksiPageLayout.createSequentialGroup()
+                                .addComponent(labelJumlahPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(inputJumlahPembelian))
+                            .addComponent(labelPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(transaksiPageLayout.createSequentialGroup()
+                                .addComponent(labelDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)));
+                                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnTambahPembelian)
+                                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(transaksiPageLayout.createSequentialGroup()
+                                .addComponent(labelNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputNBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(transaksiPageLayout.createSequentialGroup()
+                                .addComponent(labelSuplierBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbSuplierBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(transaksiPageLayout.createSequentialGroup()
+                                .addComponent(labelKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(39, 39, 39)
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(transaksiPageLayout.createSequentialGroup()
+                                .addComponent(labelPembelian1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(258, 329, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transaksiPageLayout.createSequentialGroup()
+                                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(transaksiPageLayout.createSequentialGroup()
+                                        .addComponent(labelKodeBarangBeliJual, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbKodeBarangBeliJual, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(transaksiPageLayout.createSequentialGroup()
+                                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(labelJumlahPenjualan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(labelPerusahaanJual, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbPerusahaanJual, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(inputJumlahPenjualan)))
+                                    .addGroup(transaksiPageLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(btnTambahPenjualan)))
+                                .addGap(36, 36, 36))))))
+        );
+        transaksiPageLayout.setVerticalGroup(
+            transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transaksiPageLayout.createSequentialGroup()
+                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(transaksiPageLayout.createSequentialGroup()
+                        .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPembelian1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelPembelian, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(47, 47, 47)
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelSuplierBeli)
+                            .addComponent(cbSuplierBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelKategori)
+                            .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelJumlahPembelian)
+                            .addComponent(inputJumlahPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(transaksiPageLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelKodeBarangBeliJual)
+                            .addComponent(cbKodeBarangBeliJual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelNamaBarang)
+                            .addComponent(inputNBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelPerusahaanJual)
+                            .addComponent(cbPerusahaanJual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inputJumlahPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelJumlahPenjualan))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTambahPenjualan)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelDeskripsi)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btnTambahPembelian)
+                .addGap(18, 18, 18)
+                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputCariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCariBarang1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+        );
 
         panelPages.add(transaksiPage, "transaksiPage");
         transaksiPage.getAccessibleContext().setAccessibleName("");
@@ -781,19 +675,19 @@ public class Home extends javax.swing.JFrame {
         javax.swing.GroupLayout header4Layout = new javax.swing.GroupLayout(header4);
         header4.setLayout(header4Layout);
         header4Layout.setHorizontalGroup(
-                header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(header4Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(title4, javax.swing.GroupLayout.PREFERRED_SIZE, 151,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(601, Short.MAX_VALUE)));
+            header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(header4Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(title4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(601, Short.MAX_VALUE))
+        );
         header4Layout.setVerticalGroup(
-                header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, header4Layout.createSequentialGroup()
-                                .addContainerGap(16, Short.MAX_VALUE)
-                                .addComponent(title4, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)));
+            header4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, header4Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(title4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
 
         labelKodeBarangLapor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelKodeBarangLapor.setForeground(new java.awt.Color(51, 51, 51));
@@ -824,15 +718,16 @@ public class Home extends javax.swing.JFrame {
         });
 
         tableLaporkan.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null, null },
-                        { null, null, null, null, null },
-                        { null, null, null, null, null },
-                        { null, null, null, null, null }
-                },
-                new String[] {
-                        "issue_id", "item_id", "employee_id", "quantity", "description"
-                }));
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "issue_id", "item_id", "employee_id", "quantity", "description"
+            }
+        ));
         jScrollPane6.setViewportView(tableLaporkan);
 
         btnCariLaporan.setBackground(new java.awt.Color(22, 103, 15));
@@ -849,121 +744,80 @@ public class Home extends javax.swing.JFrame {
         lableKeteranganLapor.setForeground(new java.awt.Color(51, 51, 51));
         lableKeteranganLapor.setText("Keterangan");
 
-        cbKodeBarangLapor.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbKodeBarangLapor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         taKeterangan.setColumns(20);
         taKeterangan.setRows(5);
         jScrollPane7.setViewportView(taKeterangan);
 
-        cbPelapor.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPelapor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout laporBarangPageLayout = new javax.swing.GroupLayout(laporBarangPage);
         laporBarangPage.setLayout(laporBarangPageLayout);
         laporBarangPageLayout.setHorizontalGroup(
-                laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(header4)
-                        .addGroup(laporBarangPageLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(laporBarangPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane6)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, laporBarangPageLayout
-                                                .createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(inputCariLaporan, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnCariLaporan))
-                                        .addGroup(laporBarangPageLayout.createSequentialGroup()
-                                                .addGroup(laporBarangPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                false)
-                                                        .addGroup(laporBarangPageLayout.createSequentialGroup()
-                                                                .addComponent(labelKodeBarangLapor,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 109,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(cbKodeBarangLapor, 0,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE))
-                                                        .addGroup(laporBarangPageLayout.createSequentialGroup()
-                                                                .addComponent(labelNPelapor,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 109,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(cbPelapor, 0,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE))
-                                                        .addGroup(laporBarangPageLayout.createSequentialGroup()
-                                                                .addComponent(lableKeteranganLapor,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 109,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(jScrollPane7))
-                                                        .addGroup(laporBarangPageLayout.createSequentialGroup()
-                                                                .addComponent(labelJmlBarangLapor,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 109,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(inputJmlBarangLapor,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 234,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(btnSimpanLaporan,
-                                                                javax.swing.GroupLayout.Alignment.TRAILING))
-                                                .addGap(0, 0, Short.MAX_VALUE)))
-                                .addContainerGap()));
+            laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(header4)
+            .addGroup(laporBarangPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, laporBarangPageLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(inputCariLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCariLaporan))
+                    .addGroup(laporBarangPageLayout.createSequentialGroup()
+                        .addGroup(laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(laporBarangPageLayout.createSequentialGroup()
+                                .addComponent(labelKodeBarangLapor, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbKodeBarangLapor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(laporBarangPageLayout.createSequentialGroup()
+                                .addComponent(labelNPelapor, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbPelapor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(laporBarangPageLayout.createSequentialGroup()
+                                .addComponent(lableKeteranganLapor, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane7))
+                            .addGroup(laporBarangPageLayout.createSequentialGroup()
+                                .addComponent(labelJmlBarangLapor, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputJmlBarangLapor, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSimpanLaporan, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
         laporBarangPageLayout.setVerticalGroup(
-                laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(laporBarangPageLayout.createSequentialGroup()
-                                .addComponent(header4, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(laporBarangPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelKodeBarangLapor)
-                                        .addComponent(cbKodeBarangLapor, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(6, 6, 6)
-                                .addGroup(laporBarangPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelJmlBarangLapor)
-                                        .addComponent(inputJmlBarangLapor, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(6, 6, 6)
-                                .addGroup(laporBarangPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelNPelapor)
-                                        .addComponent(cbPelapor, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(6, 6, 6)
-                                .addGroup(laporBarangPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lableKeteranganLapor)
-                                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSimpanLaporan)
-                                .addGap(7, 7, 7)
-                                .addGroup(laporBarangPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                        .addComponent(btnCariLaporan)
-                                        .addComponent(inputCariLaporan, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 227,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(116, Short.MAX_VALUE)));
+            laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(laporBarangPageLayout.createSequentialGroup()
+                .addComponent(header4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelKodeBarangLapor)
+                    .addComponent(cbKodeBarangLapor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelJmlBarangLapor)
+                    .addComponent(inputJmlBarangLapor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNPelapor)
+                    .addComponent(cbPelapor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lableKeteranganLapor)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnSimpanLaporan)
+                .addGap(7, 7, 7)
+                .addGroup(laporBarangPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnCariLaporan)
+                    .addComponent(inputCariLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(136, Short.MAX_VALUE))
+        );
 
         panelPages.add(laporBarangPage, "laporBarangPage");
 
@@ -978,30 +832,31 @@ public class Home extends javax.swing.JFrame {
         javax.swing.GroupLayout header2Layout = new javax.swing.GroupLayout(header2);
         header2.setLayout(header2Layout);
         header2Layout.setHorizontalGroup(
-                header2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(header2Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 151,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            header2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(header2Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
         header2Layout.setVerticalGroup(
-                header2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, header2Layout.createSequentialGroup()
-                                .addContainerGap(16, Short.MAX_VALUE)
-                                .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)));
+            header2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, header2Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
 
         tableStokBarang.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null, null, null },
-                        { null, null, null, null, null, null },
-                        { null, null, null, null, null, null },
-                        { null, null, null, null, null, null }
-                },
-                new String[] {
-                        "id", "item_name", "category", "quantity", "low_stock_level", "description"
-                }));
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "id", "item_name", "category", "quantity", "low_stock_level", "description"
+            }
+        ));
         jScrollPane3.setViewportView(tableStokBarang);
 
         btnCariBarang.setBackground(new java.awt.Color(22, 103, 15));
@@ -1030,29 +885,20 @@ public class Home extends javax.swing.JFrame {
         labelDeskripsiEdit.setForeground(new java.awt.Color(51, 51, 51));
         labelDeskripsiEdit.setText("Deskripsi");
 
-        labelKategoriEdit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        labelKategoriEdit.setForeground(new java.awt.Color(51, 51, 51));
-        labelKategoriEdit.setText("Perusahaan:");
+        labelCompanyEdit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelCompanyEdit.setForeground(new java.awt.Color(51, 51, 51));
+        labelCompanyEdit.setText("Perusahaan:");
 
-        cbKategoriEdit.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbKategoriEdit.addActionListener(new java.awt.event.ActionListener() {
+        cbCompanyEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCompanyEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbKategoriEditActionPerformed(evt);
+                cbCompanyEditActionPerformed(evt);
             }
         });
 
         inputNBarangEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputNBarangEditActionPerformed(evt);
-            }
-        });
-
-        cbKodeBarangEdit.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbKodeBarangEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbKodeBarangEditActionPerformed(evt);
             }
         });
 
@@ -1072,151 +918,100 @@ public class Home extends javax.swing.JFrame {
 
         labelKategoriEdit1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelKategoriEdit1.setForeground(new java.awt.Color(51, 51, 51));
-        labelKategoriEdit1.setText("Suplier :");
+        labelKategoriEdit1.setText("Kategori");
 
-        cbKategoriEdit1.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbKategoriEdit1.addActionListener(new java.awt.event.ActionListener() {
+        cbKategoriEdit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbKategoriEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbKategoriEdit1ActionPerformed(evt);
+                cbKategoriEditActionPerformed(evt);
+            }
+        });
+
+        inputKodeBarangEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputKodeBarangEditActionPerformed(evt);
             }
         });
 
         javax.swing.GroupLayout stokPageLayout = new javax.swing.GroupLayout(stokPage);
         stokPage.setLayout(stokPageLayout);
         stokPageLayout.setHorizontalGroup(
-                stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(header2)
-                        .addGroup(stokPageLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(stokPageLayout.createSequentialGroup()
-                                                .addGroup(stokPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(btnSimpanBarang)
-                                                        .addGroup(stokPageLayout
-                                                                .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                        false)
-                                                                .addGroup(stokPageLayout.createSequentialGroup()
-                                                                        .addComponent(labelKategoriEdit,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                111,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(cbKategoriEdit, 0,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE))
-                                                                .addComponent(labelPembelian2)
-                                                                .addGroup(stokPageLayout.createSequentialGroup()
-                                                                        .addComponent(labelDeskripsiEdit,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                111,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(jScrollPane8,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                .addGroup(stokPageLayout.createSequentialGroup()
-                                                                        .addGroup(stokPageLayout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                                false)
-                                                                                .addComponent(labelNamaBarangEdit,
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        111, Short.MAX_VALUE)
-                                                                                .addComponent(labelKodeBarangEdit,
-                                                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE))
-                                                                        .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addGroup(stokPageLayout.createParallelGroup(
-                                                                                javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(inputNBarangEdit)
-                                                                                .addComponent(cbKodeBarangEdit, 0,
-                                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                        Short.MAX_VALUE)))
-                                                                .addGroup(stokPageLayout.createSequentialGroup()
-                                                                        .addComponent(labelKategoriEdit1,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                111,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(cbKategoriEdit1, 0,
-                                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE))))
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, stokPageLayout
-                                                .createSequentialGroup()
-                                                .addGroup(stokPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jScrollPane3,
-                                                                javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addGroup(stokPageLayout.createSequentialGroup()
-                                                                .addGap(384, 384, 384)
-                                                                .addComponent(inputPencarianBarang,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 303,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnCariBarang)))
-                                                .addContainerGap()))));
+            stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(header2)
+            .addGroup(stokPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(stokPageLayout.createSequentialGroup()
+                        .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelNamaBarangEdit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(labelKodeBarangEdit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputNBarangEdit)
+                            .addComponent(inputKodeBarangEdit, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, stokPageLayout.createSequentialGroup()
+                        .addComponent(btnSimpanBarang)
+                        .addGap(414, 414, 414))
+                    .addGroup(stokPageLayout.createSequentialGroup()
+                        .addComponent(labelCompanyEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbCompanyEdit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(stokPageLayout.createSequentialGroup()
+                        .addComponent(labelKategoriEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbKategoriEdit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(stokPageLayout.createSequentialGroup()
+                        .addComponent(labelDeskripsiEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane8))
+                    .addGroup(stokPageLayout.createSequentialGroup()
+                        .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPembelian2)
+                            .addGroup(stokPageLayout.createSequentialGroup()
+                                .addGap(384, 384, 384)
+                                .addComponent(inputPencarianBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCariBarang)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
         stokPageLayout.setVerticalGroup(
-                stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(stokPageLayout.createSequentialGroup()
-                                .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelPembelian2)
-                                .addGap(14, 14, 14)
-                                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelKodeBarangEdit)
-                                        .addComponent(cbKodeBarangEdit, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                        .addComponent(labelNamaBarangEdit)
-                                        .addComponent(inputNBarangEdit, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelKategoriEdit)
-                                        .addComponent(cbKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelKategoriEdit1)
-                                        .addComponent(cbKategoriEdit1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelDeskripsiEdit)
-                                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSimpanBarang)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                        .addComponent(btnCariBarang)
-                                        .addComponent(inputPencarianBarang, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 227,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)));
+            stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(stokPageLayout.createSequentialGroup()
+                .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelPembelian2)
+                .addGap(14, 14, 14)
+                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelKodeBarangEdit)
+                    .addComponent(inputKodeBarangEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(labelNamaBarangEdit)
+                    .addComponent(inputNBarangEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelCompanyEdit)
+                    .addComponent(cbCompanyEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelKategoriEdit1)
+                    .addComponent(cbKategoriEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelDeskripsiEdit)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnSimpanBarang)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnCariBarang)
+                    .addComponent(inputPencarianBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+        );
 
         panelPages.add(stokPage, "stokPage");
 
@@ -1231,19 +1026,19 @@ public class Home extends javax.swing.JFrame {
         javax.swing.GroupLayout header1Layout = new javax.swing.GroupLayout(header1);
         header1.setLayout(header1Layout);
         header1Layout.setHorizontalGroup(
-                header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(header1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 151,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(601, Short.MAX_VALUE)));
+            header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(header1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(601, Short.MAX_VALUE))
+        );
         header1Layout.setVerticalGroup(
-                header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, header1Layout.createSequentialGroup()
-                                .addContainerGap(16, Short.MAX_VALUE)
-                                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)));
+            header1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, header1Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -1290,28 +1085,29 @@ public class Home extends javax.swing.JFrame {
         });
 
         tableKaryawan.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null },
-                        { null, null, null },
-                        { null, null, null },
-                        { null, null, null }
-                },
-                new String[] {
-                        "NIP", "Nama", "Department"
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "NIP", "Nama", "Department"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean[] {
-                    false, false, false
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         tableKaryawan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1374,117 +1170,78 @@ public class Home extends javax.swing.JFrame {
         javax.swing.GroupLayout karyawanPageLayout = new javax.swing.GroupLayout(karyawanPage);
         karyawanPage.setLayout(karyawanPageLayout);
         karyawanPageLayout.setHorizontalGroup(
-                karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(header1)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, karyawanPageLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(karyawanPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jScrollPane2)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                karyawanPageLayout.createSequentialGroup()
-                                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, karyawanPageLayout
-                                                .createSequentialGroup()
-                                                .addGroup(karyawanPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(karyawanPageLayout
-                                                                .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                        false)
-                                                                .addComponent(labelNIP,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                .addComponent(labelNamaKaryawan,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE))
-                                                        .addComponent(labelDepartemen,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 109,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(karyawanPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(cbDepartemen, 0,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(inputNKaryawan1)
-                                                        .addComponent(inputNIP)))
-                                        .addGroup(karyawanPageLayout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addGroup(karyawanPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addGroup(karyawanPageLayout.createSequentialGroup()
-                                                                .addComponent(btnTambahKaryawan)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnResetKaryawan)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnDeleteKaryawan)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnUpdateKaryawan))
-                                                        .addGroup(karyawanPageLayout.createSequentialGroup()
-                                                                .addComponent(inputCariKaryawan,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 303,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnHapusPencarianKaryawan)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(btnCariKaryawan)))))
-                                .addGap(22, 22, 22)));
+            karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(header1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, karyawanPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, karyawanPageLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, karyawanPageLayout.createSequentialGroup()
+                        .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(labelNIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelNamaKaryawan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(labelDepartemen, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbDepartemen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inputNKaryawan1)
+                            .addComponent(inputNIP)))
+                    .addGroup(karyawanPageLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(karyawanPageLayout.createSequentialGroup()
+                                .addComponent(btnTambahKaryawan)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnResetKaryawan)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDeleteKaryawan)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUpdateKaryawan))
+                            .addGroup(karyawanPageLayout.createSequentialGroup()
+                                .addComponent(inputCariKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnHapusPencarianKaryawan)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCariKaryawan)))))
+                .addGap(22, 22, 22))
+        );
         karyawanPageLayout.setVerticalGroup(
-                karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(karyawanPageLayout.createSequentialGroup()
-                                .addComponent(header1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(karyawanPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(inputNIP, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(labelNIP))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(karyawanPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelNamaKaryawan)
-                                        .addComponent(inputNKaryawan1, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(karyawanPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelDepartemen)
-                                        .addComponent(cbDepartemen, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(karyawanPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnUpdateKaryawan)
-                                        .addComponent(btnDeleteKaryawan)
-                                        .addComponent(btnTambahKaryawan)
-                                        .addComponent(btnResetKaryawan))
-                                .addGap(45, 45, 45)
-                                .addGroup(
-                                        karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                                .addComponent(btnCariKaryawan)
-                                                .addComponent(inputCariKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(btnHapusPencarianKaryawan))
-                                .addGap(26, 26, 26)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 114, Short.MAX_VALUE)));
+            karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(karyawanPageLayout.createSequentialGroup()
+                .addComponent(header1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputNIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNIP))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNamaKaryawan)
+                    .addComponent(inputNKaryawan1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelDepartemen)
+                    .addComponent(cbDepartemen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdateKaryawan)
+                    .addComponent(btnDeleteKaryawan)
+                    .addComponent(btnTambahKaryawan)
+                    .addComponent(btnResetKaryawan))
+                .addGap(45, 45, 45)
+                .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnCariKaryawan)
+                    .addComponent(inputCariKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHapusPencarianKaryawan))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 134, Short.MAX_VALUE))
+        );
 
         panelPages.add(karyawanPage, "karyawanPage");
 
@@ -1499,19 +1256,19 @@ public class Home extends javax.swing.JFrame {
         javax.swing.GroupLayout header3Layout = new javax.swing.GroupLayout(header3);
         header3.setLayout(header3Layout);
         header3Layout.setHorizontalGroup(
-                header3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(header3Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 151,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(601, Short.MAX_VALUE)));
+            header3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(header3Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(601, Short.MAX_VALUE))
+        );
         header3Layout.setVerticalGroup(
-                header3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, header3Layout.createSequentialGroup()
-                                .addContainerGap(16, Short.MAX_VALUE)
-                                .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 50,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)));
+            header3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, header3Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(title3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
@@ -1566,28 +1323,29 @@ public class Home extends javax.swing.JFrame {
         });
 
         tableSuplier.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null }
-                },
-                new String[] {
-                        "Nama Perusahaan", "Email", "Phone", "Address"
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nama Perusahaan", "Email", "Phone", "Address"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean[] {
-                    false, false, false, false
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         tableSuplier.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1650,128 +1408,86 @@ public class Home extends javax.swing.JFrame {
         javax.swing.GroupLayout suplierPageLayout = new javax.swing.GroupLayout(suplierPage);
         suplierPage.setLayout(suplierPageLayout);
         suplierPageLayout.setHorizontalGroup(
-                suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(header3)
-                        .addGroup(suplierPageLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(suplierPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(suplierPageLayout.createSequentialGroup()
-                                                .addGroup(suplierPageLayout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                false)
-                                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(suplierPageLayout.createSequentialGroup()
-                                                                .addComponent(labelNPerusahaan,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 130,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(inputNPerusahaan))
-                                                        .addGroup(suplierPageLayout.createSequentialGroup()
-                                                                .addComponent(labelEmail,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 130,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(inputEmail))
-                                                        .addGroup(suplierPageLayout.createSequentialGroup()
-                                                                .addComponent(labelTelepon,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 130,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(inputTelepon))
-                                                        .addGroup(suplierPageLayout.createSequentialGroup()
-                                                                .addComponent(labelAlamat,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 130,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(jScrollPane4,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                suplierPageLayout.createSequentialGroup()
-                                                                        .addComponent(btnTambahSuplier)
-                                                                        .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(btnResetSuplier3)
-                                                                        .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(btnDeleteSuplier2)
-                                                                        .addPreferredGap(
-                                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                                        .addComponent(btnUpdateSuplier1)))
-                                                .addGap(0, 420, Short.MAX_VALUE))
-                                        .addComponent(jScrollPane5)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, suplierPageLayout
-                                                .createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(inputCariPerusahaan,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 303,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnHapusPencarianCompany)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(btnCariSuplier)))
-                                .addContainerGap()));
+            suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(header3)
+            .addGroup(suplierPageLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(suplierPageLayout.createSequentialGroup()
+                        .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(suplierPageLayout.createSequentialGroup()
+                                .addComponent(labelNPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputNPerusahaan))
+                            .addGroup(suplierPageLayout.createSequentialGroup()
+                                .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputEmail))
+                            .addGroup(suplierPageLayout.createSequentialGroup()
+                                .addComponent(labelTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(inputTelepon))
+                            .addGroup(suplierPageLayout.createSequentialGroup()
+                                .addComponent(labelAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, suplierPageLayout.createSequentialGroup()
+                                .addComponent(btnTambahSuplier)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnResetSuplier3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDeleteSuplier2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUpdateSuplier1)))
+                        .addGap(0, 420, Short.MAX_VALUE))
+                    .addComponent(jScrollPane5)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, suplierPageLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(inputCariPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnHapusPencarianCompany)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCariSuplier)))
+                .addContainerGap())
+        );
         suplierPageLayout.setVerticalGroup(
-                suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(suplierPageLayout.createSequentialGroup()
-                                .addComponent(header3, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addGroup(suplierPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelNPerusahaan)
-                                        .addComponent(inputNPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(suplierPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelEmail)
-                                        .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(suplierPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(labelTelepon)
-                                        .addComponent(inputTelepon, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(
-                                        suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(labelAlamat)
-                                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(suplierPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnTambahSuplier)
-                                        .addComponent(btnUpdateSuplier1)
-                                        .addComponent(btnDeleteSuplier2)
-                                        .addComponent(btnResetSuplier3))
-                                .addGap(15, 15, 15)
-                                .addGroup(suplierPageLayout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                        .addComponent(btnCariSuplier)
-                                        .addComponent(inputCariPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnHapusPencarianCompany))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 227,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 79, Short.MAX_VALUE)));
+            suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(suplierPageLayout.createSequentialGroup()
+                .addComponent(header3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNPerusahaan)
+                    .addComponent(inputNPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelEmail)
+                    .addComponent(inputEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelTelepon)
+                    .addComponent(inputTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelAlamat)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTambahSuplier)
+                    .addComponent(btnUpdateSuplier1)
+                    .addComponent(btnDeleteSuplier2)
+                    .addComponent(btnResetSuplier3))
+                .addGap(15, 15, 15)
+                .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnCariSuplier)
+                    .addComponent(inputCariPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHapusPencarianCompany))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 99, Short.MAX_VALUE))
+        );
 
         panelPages.add(suplierPage, "suplierPage");
 
@@ -1780,16 +1496,29 @@ public class Home extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void inputKodeBarangEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputKodeBarangEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputKodeBarangEditActionPerformed
+
+    private void cbKategoriActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        // TODO add your handling code here:
+    }
+    
+    private void cbCompanyEditActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        // TODO add your handling code here:
+    }
+    
     private void btnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTransaksiActionPerformed
         cardLayout.show(panelPages, "transaksiPage");
     }// GEN-LAST:event_btnTransaksiActionPerformed
@@ -2250,15 +1979,15 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnTransaksi;
     private javax.swing.JButton btnUpdateKaryawan;
     private javax.swing.JButton btnUpdateSuplier1;
+    private javax.swing.JComboBox<String> cbCompanyEdit;
     private javax.swing.JComboBox<String> cbDepartemen;
+    private javax.swing.JComboBox<String> cbKategori;
     private javax.swing.JComboBox<String> cbKategoriEdit;
-    private javax.swing.JComboBox<String> cbKategoriEdit1;
     private javax.swing.JComboBox<String> cbKodeBarangBeliJual;
-    private javax.swing.JComboBox<String> cbKodeBarangEdit;
     private javax.swing.JComboBox<String> cbKodeBarangLapor;
+    private javax.swing.JComboBox<String> cbPelapor;
     private javax.swing.JComboBox<String> cbPerusahaanJual;
     private javax.swing.JComboBox<String> cbSuplierBeli;
-    private javax.swing.JComboBox<String> dbStatus;
     private javax.swing.JDesktopPane header;
     private javax.swing.JDesktopPane header1;
     private javax.swing.JDesktopPane header2;
@@ -2273,13 +2002,13 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField inputJmlBarangLapor;
     private javax.swing.JTextField inputJumlahPembelian;
     private javax.swing.JTextField inputJumlahPenjualan;
+    private javax.swing.JTextField inputKBarangBeli;
+    private javax.swing.JTextField inputKodeBarangEdit;
     private javax.swing.JTextField inputNBarang;
     private javax.swing.JTextField inputNBarangEdit;
     private javax.swing.JTextField inputNIP;
     private javax.swing.JTextField inputNKaryawan1;
-    private javax.swing.JTextField inputNPelapor;
     private javax.swing.JTextField inputNPerusahaan;
-    private javax.swing.JTextField inputPasswordAdmin;
     private javax.swing.JTextField inputPencarianBarang;
     private javax.swing.JTextField inputTelepon;
     private javax.swing.JEditorPane jEditorPane1;
@@ -2300,6 +2029,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel karyawanPage;
     private javax.swing.JLabel labelAlamat;
+    private javax.swing.JLabel labelCompanyEdit;
     private javax.swing.JLabel labelDepartemen;
     private javax.swing.JLabel labelDeskripsi;
     private javax.swing.JLabel labelDeskripsiEdit;
@@ -2308,8 +2038,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel labelJumlahPembelian;
     private javax.swing.JLabel labelJumlahPenjualan;
     private javax.swing.JLabel labelKategori;
-    private javax.swing.JLabel labelKategoriEdit;
     private javax.swing.JLabel labelKategoriEdit1;
+    private javax.swing.JLabel labelKodeBarangBeli;
     private javax.swing.JLabel labelKodeBarangBeliJual;
     private javax.swing.JLabel labelKodeBarangEdit;
     private javax.swing.JLabel labelKodeBarangLapor;
@@ -2323,7 +2053,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel labelPembelian1;
     private javax.swing.JLabel labelPembelian2;
     private javax.swing.JLabel labelPerusahaanJual;
-    private javax.swing.JLabel labelStatus;
     private javax.swing.JLabel labelSuplierBeli;
     private javax.swing.JLabel labelTelepon;
     private javax.swing.JLabel lableKeteranganLapor;
