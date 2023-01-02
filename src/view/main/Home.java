@@ -54,6 +54,8 @@ public class Home extends javax.swing.JFrame {
         btnResetKaryawan.setVisible(false);
         btnHapusPencarianCompany.setVisible(false);
         btnHapusPencarianKaryawan.setVisible(false);
+        PassFieldNewAdmin.setVisible(false);
+        labelPassNewAdmin.setVisible(false);
     }
 
     private void setupTable() {
@@ -203,6 +205,10 @@ public class Home extends javax.swing.JFrame {
         btnTambahKaryawan = new javax.swing.JButton();
         btnResetKaryawan = new javax.swing.JButton();
         btnHapusPencarianKaryawan = new javax.swing.JButton();
+        labelStatus = new javax.swing.JLabel();
+        cbStatus = new javax.swing.JComboBox<>();
+        labelPassNewAdmin = new javax.swing.JLabel();
+        PassFieldNewAdmin = new javax.swing.JPasswordField();
         suplierPage = new javax.swing.JPanel();
         header3 = new javax.swing.JDesktopPane();
         title3 = new javax.swing.JLabel();
@@ -560,10 +566,6 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(transaksiPageLayout.createSequentialGroup()
                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(transaksiPageLayout.createSequentialGroup()
-                                .addComponent(labelJumlahPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(inputJumlahPembelian))
                             .addComponent(labelPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(transaksiPageLayout.createSequentialGroup()
                                 .addComponent(labelDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -580,14 +582,18 @@ public class Home extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbSuplierBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(transaksiPageLayout.createSequentialGroup()
-                                .addComponent(labelKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(labelJumlahPembelian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelKategori, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(39, 39, 39)
+                                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inputJumlahPembelian))))
+                        .addGap(18, 18, 18)
                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(transaksiPageLayout.createSequentialGroup()
                                 .addComponent(labelPembelian1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(258, 329, Short.MAX_VALUE))
+                                .addGap(258, 291, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transaksiPageLayout.createSequentialGroup()
                                 .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(transaksiPageLayout.createSequentialGroup()
@@ -650,7 +656,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelDeskripsi)
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTambahPembelian)
                 .addGap(18, 18, 18)
                 .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -816,7 +822,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(inputCariLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
 
         panelPages.add(laporBarangPage, "laporBarangPage");
@@ -1004,7 +1010,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSimpanBarang)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnCariBarang)
                     .addComponent(inputPencarianBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1046,7 +1052,7 @@ public class Home extends javax.swing.JFrame {
 
         labelNIP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelNIP.setForeground(new java.awt.Color(51, 51, 51));
-        labelNIP.setText("NIP:");
+        labelNIP.setText("NIP");
 
         inputNIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1056,11 +1062,11 @@ public class Home extends javax.swing.JFrame {
 
         labelNamaKaryawan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelNamaKaryawan.setForeground(new java.awt.Color(51, 51, 51));
-        labelNamaKaryawan.setText("Nama Karyawan: ");
+        labelNamaKaryawan.setText("Nama Karyawan");
 
         labelDepartemen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelDepartemen.setForeground(new java.awt.Color(51, 51, 51));
-        labelDepartemen.setText("Department:");
+        labelDepartemen.setText("Department");
 
         inputNKaryawan1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1167,6 +1173,27 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        labelStatus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelStatus.setForeground(new java.awt.Color(51, 51, 51));
+        labelStatus.setText("Status");
+
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Status", "Employee", "Admin" }));
+        cbStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbStatusActionPerformed(evt);
+            }
+        });
+
+        labelPassNewAdmin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelPassNewAdmin.setForeground(new java.awt.Color(51, 51, 51));
+        labelPassNewAdmin.setText("Password");
+
+        PassFieldNewAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PassFieldNewAdminActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout karyawanPageLayout = new javax.swing.GroupLayout(karyawanPage);
         karyawanPage.setLayout(karyawanPageLayout);
         karyawanPageLayout.setHorizontalGroup(
@@ -1184,12 +1211,16 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(labelNIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(labelNamaKaryawan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(labelDepartemen, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelDepartemen, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelPassNewAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbDepartemen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(inputNKaryawan1)
-                            .addComponent(inputNIP)))
+                            .addComponent(inputNIP)
+                            .addComponent(cbStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PassFieldNewAdmin)))
                     .addGroup(karyawanPageLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1229,6 +1260,14 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(cbDepartemen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelStatus)
+                    .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPassNewAdmin)
+                    .addComponent(PassFieldNewAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(karyawanPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdateKaryawan)
                     .addComponent(btnDeleteKaryawan)
                     .addComponent(btnTambahKaryawan)
@@ -1240,7 +1279,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btnHapusPencarianKaryawan))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 134, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         panelPages.add(karyawanPage, "karyawanPage");
@@ -1413,34 +1452,32 @@ public class Home extends javax.swing.JFrame {
             .addGroup(suplierPageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(suplierPageLayout.createSequentialGroup()
-                        .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(suplierPageLayout.createSequentialGroup()
-                                .addComponent(labelNPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputNPerusahaan))
-                            .addGroup(suplierPageLayout.createSequentialGroup()
-                                .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputEmail))
-                            .addGroup(suplierPageLayout.createSequentialGroup()
-                                .addComponent(labelTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputTelepon))
-                            .addGroup(suplierPageLayout.createSequentialGroup()
-                                .addComponent(labelAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, suplierPageLayout.createSequentialGroup()
-                                .addComponent(btnTambahSuplier)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnResetSuplier3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDeleteSuplier2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnUpdateSuplier1)))
-                        .addGap(0, 420, Short.MAX_VALUE))
+                    .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(suplierPageLayout.createSequentialGroup()
+                            .addComponent(labelNPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(inputNPerusahaan))
+                        .addGroup(suplierPageLayout.createSequentialGroup()
+                            .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(inputEmail))
+                        .addGroup(suplierPageLayout.createSequentialGroup()
+                            .addComponent(labelTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(inputTelepon))
+                        .addGroup(suplierPageLayout.createSequentialGroup()
+                            .addComponent(labelAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, suplierPageLayout.createSequentialGroup()
+                            .addComponent(btnTambahSuplier)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnResetSuplier3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnDeleteSuplier2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnUpdateSuplier1)))
                     .addComponent(jScrollPane5)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, suplierPageLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1486,7 +1523,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(btnHapusPencarianCompany))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 99, Short.MAX_VALUE))
+                .addGap(0, 95, Short.MAX_VALUE))
         );
 
         panelPages.add(suplierPage, "suplierPage");
@@ -1511,14 +1548,30 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputKodeBarangEditActionPerformed
 
-    private void cbKategoriActionPerformed(java.awt.event.ActionEvent evt) {                                               
+    private void cbStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbStatusActionPerformed
+        // TODO add your handling code here:
+        String status = cbStatus.getSelectedItem().toString();
+        if (status.equals("Admin")) {
+            labelPassNewAdmin.setVisible(true);
+            PassFieldNewAdmin.setVisible(true);
+        } else if (status.equals("Employee") || status.equals("Select Status")) {
+            labelPassNewAdmin.setVisible(false);
+            PassFieldNewAdmin.setVisible(false);
+        }
+    }//GEN-LAST:event_cbStatusActionPerformed
+
+    private void PassFieldNewAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassFieldNewAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PassFieldNewAdminActionPerformed
+
+    private void cbKategoriActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-    
-    private void cbCompanyEditActionPerformed(java.awt.event.ActionEvent evt) {                                              
+
+    private void cbCompanyEditActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-    
+
     private void btnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTransaksiActionPerformed
         cardLayout.show(panelPages, "transaksiPage");
     }// GEN-LAST:event_btnTransaksiActionPerformed
@@ -1952,6 +2005,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField PassFieldNewAdmin;
     private javax.swing.JPanel Sidebar;
     private javax.swing.JButton btnCariBarang;
     private javax.swing.JButton btnCariBarang1;
@@ -1987,6 +2041,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbKodeBarangLapor;
     private javax.swing.JComboBox<String> cbPelapor;
     private javax.swing.JComboBox<String> cbPerusahaanJual;
+    private javax.swing.JComboBox<String> cbStatus;
     private javax.swing.JComboBox<String> cbSuplierBeli;
     private javax.swing.JDesktopPane header;
     private javax.swing.JDesktopPane header1;
@@ -2049,10 +2104,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel labelNamaBarang;
     private javax.swing.JLabel labelNamaBarangEdit;
     private javax.swing.JLabel labelNamaKaryawan;
+    private javax.swing.JLabel labelPassNewAdmin;
     private javax.swing.JLabel labelPembelian;
     private javax.swing.JLabel labelPembelian1;
     private javax.swing.JLabel labelPembelian2;
     private javax.swing.JLabel labelPerusahaanJual;
+    private javax.swing.JLabel labelStatus;
     private javax.swing.JLabel labelSuplierBeli;
     private javax.swing.JLabel labelTelepon;
     private javax.swing.JLabel lableKeteranganLapor;
