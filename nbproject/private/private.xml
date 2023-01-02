@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Kuliah/S3/PBO%20Pemrograman%20Berorientasi%20Objek/Tubes/tubes-pbo-collector/src/view/main/Home.java</file>
+=======
+            <file>file:/E:/Tugas/Kuliah/PEMBELAJARAN/SMT3/PBO/Tubes/Github/tubes-pbo-collector/src/controller/CategoryController.java</file>
+            <file>file:/E:/Tugas/Kuliah/PEMBELAJARAN/SMT3/PBO/Tubes/Github/tubes-pbo-collector/src/view/main/Home.java</file>
+            <file>file:/E:/Tugas/Kuliah/PEMBELAJARAN/SMT3/PBO/Tubes/Github/tubes-pbo-collector/src/controller/AdminController.java</file>
+            <file>file:/E:/Tugas/Kuliah/PEMBELAJARAN/SMT3/PBO/Tubes/Github/tubes-pbo-collector/src/controller/EmployeeController.java</file>
+            <file>file:/E:/Tugas/Kuliah/PEMBELAJARAN/SMT3/PBO/Tubes/Github/tubes-pbo-collector/src/controller/CompanyController.java</file>
+            <file>file:/E:/Tugas/Kuliah/PEMBELAJARAN/SMT3/PBO/Tubes/Github/tubes-pbo-collector/src/controller/Collector.java</file>
+            <file>file:/E:/Tugas/Kuliah/PEMBELAJARAN/SMT3/PBO/Tubes/Github/tubes-pbo-collector/src/model/Category.java</file>
+>>>>>>> 158a3cc2377c55effbff349f217effc46ee5ad11
         </group>
     </open-files>
 </project-private>

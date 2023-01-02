@@ -9,27 +9,47 @@ package model;
  * @author panji
  */
 public class Transaction {
-    private String quantity;
+    private String amount;
     private String action;
+    private Item item;
+    private Company company;
 
-    public Transaction(String quantity, String action) {
-        this.quantity = quantity;
+    public Transaction(String amount, String action, Item item, Company company) {
+        this.amount = amount;
         this.action = action;
+        this.item = item;
+        this.company = company;
+    }
+
+    public String getAmount() {
+        return amount;
     }
 
     public String getAction() {
         return action;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public Item getItem() {
+        return item;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public void setAction(String action) {
         this.action = action;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setItem(Item item) {
+        this.item = item;
     }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }    
 }
