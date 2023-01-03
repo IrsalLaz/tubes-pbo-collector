@@ -23,6 +23,7 @@ public class EmployeeController {
 
     private static final ArrayList<Employee> employeeList = new ArrayList<>();
     private final DepartmentController departmentController = new DepartmentController();
+    private final AdminController adminController = new AdminController();
     private Connection conn;
     private final DBConnection db = new DBConnection();
 
@@ -36,11 +37,13 @@ public class EmployeeController {
             String textNip,
             String textName,
             String textDepartment,
+            String textStatus,
+            String textPassword,
             DefaultTableModel tableModel
     ) {
         try {
             conn = db.dbConn();
-            String name = "", nip = "";
+            String name, nip;
 
             if (!employeeList.isEmpty()) {
                 String check = "SELECT * FROM employees";
@@ -77,46 +80,106 @@ public class EmployeeController {
                     return;
                 }
 
-                int idDepartment = getDepartmentID(textDepartment);
+                if (textStatus.equalsIgnoreCase("admin")) {
+                    int idDepartment = getDepartmentID(textDepartment);
+                    int status = 1;
 
-                String insertQuery = "INSERT INTO employees("
-                        + "nip, "
-                        + "employee_name, "
-                        + "created_at, "
-                        + "updated_at, "
-                        + "department_id) "
-                        + "VALUES(?,?,?,?,?)";
+                    String insertQuery = "INSERT INTO employees("
+                            + "nip, "
+                            + "employee_name, "
+                            + "created_at, "
+                            + "updated_at, "
+                            + "department_id, "
+                            + "status) "
+                            + "VALUES(?,?,?,?,?,?)";
 
-                PreparedStatement ps = conn.prepareStatement(insertQuery);
-                ps.setString(1, textNip);
-                ps.setString(2, textName);
+                    PreparedStatement ps = conn.prepareStatement(insertQuery);
+                    ps.setString(1, textNip);
+                    ps.setString(2, textName);
 
-                Timestamp tmp = new Timestamp(System.currentTimeMillis());
+                    Timestamp tmp = new Timestamp(System.currentTimeMillis());
 
-                ps.setTimestamp(3, tmp);
-                ps.setTimestamp(4, tmp);
-                ps.setInt(5, idDepartment);
-                ps.executeUpdate();
+                    ps.setTimestamp(3, tmp);
+                    ps.setTimestamp(4, tmp);
+                    ps.setInt(5, idDepartment);
+                    ps.setInt(6, status);
+                    ps.executeUpdate();
 
-                addEmployee(new Employee(
-                        textName,
-                        textNip,
-                        textDepartment,
-                        idDepartment
-                ));
+                    addEmployee(new Employee(
+                            status,
+                            textName,
+                            textNip,
+                            idDepartment,
+                            textDepartment
+                    ));
+                    
+                    adminController.insertAdmin(
+                            textPassword, 
+                            status, 
+                            textName, 
+                            textNip, 
+                            idDepartment, 
+                            textDepartment
+                    );
 
-                int index = employeeList.size() - 1;
-                tableModel.addRow(new Object[]{
-                    employeeList.get(index).getNip(),
-                    employeeList.get(index).getEmployee_name(),
-                    employeeList.get(index).getDepartment_name(),});
+                    int index = employeeList.size() - 1;
+                    tableModel.addRow(new Object[]{
+                        employeeList.get(index).getNip(),
+                        employeeList.get(index).getEmployee_name(),
+                        employeeList.get(index).getDepartment_name(),});
 
-                JOptionPane.showMessageDialog(
-                        parentComponent,
-                        "Karyawan berhasil ditambahkan!",
-                        "Karyawan Page",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
+                    JOptionPane.showMessageDialog(
+                            parentComponent,
+                            "Karyawan berhasil ditambahkan!",
+                            "Karyawan Page",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                } else if (textStatus.equalsIgnoreCase("employee")) {
+                    int idDepartment = getDepartmentID(textDepartment);
+                    int status = 2;
+
+                    String insertQuery = "INSERT INTO employees("
+                            + "nip, "
+                            + "employee_name, "
+                            + "created_at, "
+                            + "updated_at, "
+                            + "department_id) "
+                            + "VALUES(?,?,?,?,?)";
+
+                    PreparedStatement ps = conn.prepareStatement(insertQuery);
+                    ps.setString(1, textNip);
+                    ps.setString(2, textName);
+
+                    Timestamp tmp = new Timestamp(System.currentTimeMillis());
+
+                    ps.setTimestamp(3, tmp);
+                    ps.setTimestamp(4, tmp);
+                    ps.setInt(5, idDepartment);
+                    ps.executeUpdate();
+
+                    addEmployee(new Employee(
+                            status,
+                            textName,
+                            textNip,
+                            idDepartment,
+                            textDepartment
+                    ));
+
+                    int index = employeeList.size() - 1;
+                    tableModel.addRow(new Object[]{
+                        employeeList.get(index).getNip(),
+                        employeeList.get(index).getEmployee_name(),
+                        employeeList.get(index).getDepartment_name(),});
+
+                    JOptionPane.showMessageDialog(
+                            parentComponent,
+                            "Karyawan berhasil ditambahkan!",
+                            "Karyawan Page",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                } else {
+
+                }
             } else {
                 boolean checkNip = isValidNip(textNip);
 
@@ -130,7 +193,8 @@ public class EmployeeController {
 
                     return;
                 }
-
+                
+                int status = 2;
                 int idDepartment = getDepartmentID(textDepartment);
 
                 String insertQuery = "INSERT INTO employees("
@@ -153,10 +217,11 @@ public class EmployeeController {
                 ps.executeUpdate();
 
                 addEmployee(new Employee(
+                        status,
                         textName,
                         textNip,
-                        textDepartment,
-                        idDepartment
+                        idDepartment,
+                        textDepartment
                 ));
 
                 int index = employeeList.size() - 1;
@@ -315,14 +380,16 @@ public class EmployeeController {
                     String nip = rs.getString("nip");
                     String name = rs.getString("employee_name");
                     int departmentID = rs.getInt("department_id");
+                    int status = rs.getInt("status");
 
                     String departmentName = getDepartmentName(departmentID);
 
                     addEmployee(new Employee(
+                            status,
                             name,
                             nip,
-                            departmentName,
-                            departmentID
+                            departmentID,
+                            departmentName
                     ));
 
                     int index = employeeList.size() - 1;
@@ -363,14 +430,16 @@ public class EmployeeController {
                 String nip = rset.getString("nip");
                 String name = rset.getString("employee_name");
                 int department_id = rset.getInt("department_id");
+                int status = rset.getInt("status");
 
                 String departmentName = getDepartmentName(department_id);
-
+                
                 addEmployee(new Employee(
+                        status,
                         name,
                         nip,
-                        departmentName,
-                        department_id
+                        department_id,
+                        departmentName
                 ));
 
                 int index = employeeList.size() - 1;
@@ -399,14 +468,16 @@ public class EmployeeController {
                 String employeeName = rs.getString("employee_name");
                 String nip = rs.getString("nip");
                 int departmentID = rs.getInt("department_id");
+                int status = rs.getInt("status");
 
                 String departmentName = getDepartmentName(departmentID);
 
                 addEmployee(new Employee(
+                        status,
                         employeeName,
                         nip,
-                        departmentName,
-                        departmentID
+                        departmentID,
+                        departmentName
                 ));
             }
         } catch (SQLException e) {

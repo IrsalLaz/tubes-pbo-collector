@@ -9,19 +9,19 @@ package model;
  * @author panji
  */
 public class Transaction {
-    private String amount;
+    private int amount;
     private String action;
     private Item item;
     private Company company;
 
-    public Transaction(String amount, String action, Item item, Company company) {
+    public Transaction(int amount, String action, Item item, Company company) {
         this.amount = amount;
         this.action = action;
         this.item = item;
         this.company = company;
     }
 
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
@@ -37,7 +37,7 @@ public class Transaction {
         return company;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 

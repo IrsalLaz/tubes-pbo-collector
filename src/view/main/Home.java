@@ -1,29 +1,46 @@
 package view.main;
 
 import controller.AdminController;
+import controller.CategoryController;
 import controller.CompanyController;
 import controller.DepartmentController;
 import controller.EmployeeController;
+import controller.ItemController;
+import controller.TransactionController;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.table.DefaultTableModel;
+import model.Category;
 import model.Company;
 import model.Department;
 
 public class Home extends javax.swing.JFrame {
 
+    // Controller
     private final CompanyController companyController = new CompanyController();
     private final DepartmentController departmentController = new DepartmentController();
     private final EmployeeController employeeController = new EmployeeController();
     private final AdminController admin = new AdminController();
+    private final ItemController itemController = new ItemController();
+    private final TransactionController transactionController = new TransactionController();
+    private final CategoryController categoryController = new CategoryController();
+
+    // Table
     private final DefaultTableModel modelSuplier = new DefaultTableModel();
     private final DefaultTableModel modelKaryawan = new DefaultTableModel();
+    private final DefaultTableModel modelItem = new DefaultTableModel();
+    private final DefaultTableModel modelTransaction = new DefaultTableModel();
+    private final DefaultTableModel modelIssue = new DefaultTableModel();
+
+    // Image
     ImageIcon logoImg = new ImageIcon("logo.png");
 
+    // Layout
     CardLayout cardLayout;
 
     public Home() {
@@ -46,16 +63,24 @@ public class Home extends javax.swing.JFrame {
     }
 
     private void setupButton() {
+        // Company
         btnUpdateSuplier1.setVisible(false);
         btnDeleteSuplier2.setVisible(false);
         btnResetSuplier3.setVisible(false);
+        btnHapusPencarianCompany.setVisible(false);
+
+        // Employee
         btnUpdateKaryawan.setVisible(false);
         btnDeleteKaryawan.setVisible(false);
         btnResetKaryawan.setVisible(false);
-        btnHapusPencarianCompany.setVisible(false);
         btnHapusPencarianKaryawan.setVisible(false);
+
+        // Admin
         PassFieldNewAdmin.setVisible(false);
         labelPassNewAdmin.setVisible(false);
+
+        // Stok Barang
+        labelDisabledNBarang.setEnabled(false);
     }
 
     private void setupTable() {
@@ -75,6 +100,26 @@ public class Home extends javax.swing.JFrame {
 
         tableKaryawan.setModel(modelKaryawan);
         employeeController.loadEmployee(modelKaryawan);
+
+        // Item
+        modelItem.addColumn("ID");
+        modelItem.addColumn("Item Name");
+        modelItem.addColumn("Category");
+        modelItem.addColumn("Quantity");
+        modelItem.addColumn("Low Stock Level");
+        modelItem.addColumn("Description");
+
+        tableStokBarang.setModel(modelItem);
+        itemController.loadItem(modelItem);
+
+        // Transaction
+        modelTransaction.addColumn("Item Name");
+        modelTransaction.addColumn("Company");
+        modelTransaction.addColumn("Amount");
+        modelTransaction.addColumn("Action");
+        
+        tableTransaksi.setModel(modelTransaction);
+        transactionController.loadTransaction(modelTransaction);
     }
 
     private void addItemComboBox() {
@@ -98,6 +143,15 @@ public class Home extends javax.swing.JFrame {
             cbDepartemen.addItem(d.getDepartment_name());
         }
 
+        // Category
+        cbKategori.removeAllItems();
+        cbKategori.addItem("Select Kategori");
+        categoryController.loadComboBoxItemCategory();
+        ArrayList<Category> category = categoryController.getCategoryList();
+        
+        for (Category c : category) {
+            cbKategori.addItem(c.getCategory_name());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -149,6 +203,8 @@ public class Home extends javax.swing.JFrame {
         btnTambahPenjualan = new javax.swing.JButton();
         labelKategori = new javax.swing.JLabel();
         cbKategori = new javax.swing.JComboBox<>();
+        inputDisabledNBarang = new javax.swing.JTextField();
+        labelDisabledNBarang = new javax.swing.JLabel();
         laporBarangPage = new javax.swing.JPanel();
         header4 = new javax.swing.JDesktopPane();
         title4 = new javax.swing.JLabel();
@@ -454,13 +510,13 @@ public class Home extends javax.swing.JFrame {
 
         tableTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "transaction_id", "item name", "company", "amount", "action"
+                "item name", "company", "amount", "action"
             }
         ));
         tableTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -500,6 +556,11 @@ public class Home extends javax.swing.JFrame {
         btnTambahPembelian.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnTambahPembelian.setForeground(new java.awt.Color(255, 255, 255));
         btnTambahPembelian.setText("Tambah");
+        btnTambahPembelian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahPembelianActionPerformed(evt);
+            }
+        });
 
         inputDeskripsiBarang.setColumns(20);
         inputDeskripsiBarang.setRows(5);
@@ -513,7 +574,7 @@ public class Home extends javax.swing.JFrame {
         labelKodeBarangBeliJual.setForeground(new java.awt.Color(51, 51, 51));
         labelKodeBarangBeliJual.setText("Kode barang: ");
 
-        cbKodeBarangBeliJual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbKodeBarangBeliJual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Kode Barang" }));
         cbKodeBarangBeliJual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbKodeBarangBeliJualActionPerformed(evt);
@@ -524,7 +585,7 @@ public class Home extends javax.swing.JFrame {
         labelPerusahaanJual.setForeground(new java.awt.Color(51, 51, 51));
         labelPerusahaanJual.setText("Perusahaan");
 
-        cbPerusahaanJual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPerusahaanJual.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Perusahaan" }));
         cbPerusahaanJual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbPerusahaanJualActionPerformed(evt);
@@ -539,6 +600,11 @@ public class Home extends javax.swing.JFrame {
         btnTambahPenjualan.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnTambahPenjualan.setForeground(new java.awt.Color(255, 255, 255));
         btnTambahPenjualan.setText("Tambah");
+        btnTambahPenjualan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahPenjualanActionPerformed(evt);
+            }
+        });
 
         labelKategori.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelKategori.setForeground(new java.awt.Color(51, 51, 51));
@@ -550,6 +616,10 @@ public class Home extends javax.swing.JFrame {
                 cbKategoriActionPerformed(evt);
             }
         });
+
+        labelDisabledNBarang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelDisabledNBarang.setForeground(new java.awt.Color(51, 51, 51));
+        labelDisabledNBarang.setText("Nama barang:");
 
         javax.swing.GroupLayout transaksiPageLayout = new javax.swing.GroupLayout(transaksiPage);
         transaksiPage.setLayout(transaksiPageLayout);
@@ -566,35 +636,35 @@ public class Home extends javax.swing.JFrame {
                         .addGap(12, 12, 12))
                     .addComponent(jScrollPane1)
                     .addGroup(transaksiPageLayout.createSequentialGroup()
-                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(transaksiPageLayout.createSequentialGroup()
-                                .addComponent(labelDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnTambahPembelian)
-                                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(transaksiPageLayout.createSequentialGroup()
-                                .addComponent(labelNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(inputNBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(transaksiPageLayout.createSequentialGroup()
-                                .addComponent(labelSuplierBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(transaksiPageLayout.createSequentialGroup()
-                                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(labelJumlahPembelian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelKategori, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(inputJumlahPembelian))))
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnTambahPembelian)
+                            .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(labelPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(transaksiPageLayout.createSequentialGroup()
+                                    .addComponent(labelDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(transaksiPageLayout.createSequentialGroup()
+                                    .addComponent(labelNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(inputNBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(transaksiPageLayout.createSequentialGroup()
+                                    .addComponent(labelSuplierBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cbPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(transaksiPageLayout.createSequentialGroup()
+                                    .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(labelJumlahPembelian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(labelKategori, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(inputJumlahPembelian)))))
                         .addGap(18, 18, 18)
                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(transaksiPageLayout.createSequentialGroup()
                                 .addComponent(labelPembelian1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(258, 291, Short.MAX_VALUE))
+                                .addGap(258, 285, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transaksiPageLayout.createSequentialGroup()
                                 .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(transaksiPageLayout.createSequentialGroup()
@@ -604,11 +674,13 @@ public class Home extends javax.swing.JFrame {
                                     .addGroup(transaksiPageLayout.createSequentialGroup()
                                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(labelJumlahPenjualan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(labelPerusahaanJual, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                                            .addComponent(labelPerusahaanJual, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                            .addComponent(labelDisabledNBarang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(cbPerusahaanJual, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(inputJumlahPenjualan)))
+                                            .addComponent(inputJumlahPenjualan)
+                                            .addComponent(inputDisabledNBarang)))
                                     .addGroup(transaksiPageLayout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(btnTambahPenjualan)))
@@ -635,7 +707,11 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelJumlahPembelian)
-                            .addComponent(inputJumlahPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(inputJumlahPembelian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelDeskripsi)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(transaksiPageLayout.createSequentialGroup()
                         .addGap(130, 130, 130)
                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -652,14 +728,14 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(inputJumlahPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelJumlahPenjualan))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inputDisabledNBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelDisabledNBarang))
+                        .addGap(10, 10, 10)
                         .addComponent(btnTambahPenjualan)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelDeskripsi)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnTambahPembelian)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputCariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCariBarang1))
@@ -1075,6 +1151,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        cbDepartemen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Department" }));
         cbDepartemen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbDepartemenActionPerformed(evt);
@@ -1565,7 +1642,52 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PassFieldNewAdminActionPerformed
 
+    private void btnTambahPembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPembelianActionPerformed
+        // TODO add your handling code here:
+        try {
+            String name = inputNBarang.getText();
+            String category = cbKategori.getSelectedItem().toString();
+            String company = cbPerusahaan.getSelectedItem().toString();
+            int amount = Integer.parseInt(inputJumlahPembelian.getText()); 
+            String desc = inputDeskripsiBarang.getText();
+            
+            transactionController.insertTransactionBeli(
+                    this, 
+                    name, 
+                    company, 
+                    category, 
+                    "Pembelian", 
+                    amount, 
+                    desc, 
+                    modelTransaction, 
+                    modelItem);
+            
+            inputNBarang.setText("");
+            cbKategori.setSelectedIndex(0);
+            cbPerusahaan.setSelectedIndex(0);
+            inputJumlahPembelian.setText("");
+            inputDeskripsiBarang.setText("");
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnTambahPembelianActionPerformed
+
+    private void btnTambahPenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenjualanActionPerformed
+        // TODO add your handling code here:
+        try {
+            
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_btnTambahPenjualanActionPerformed
+
     private void cbKategoriActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void cbPerusahaanActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -1644,27 +1766,35 @@ public class Home extends javax.swing.JFrame {
 
     private void btnCariKaryawanActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCariKaryawanActionPerformed
         // TODO add your handling code here:
-        String searchItem = inputCariKaryawan.getText();
+        try {
+            String searchItem = inputCariKaryawan.getText();
 
-        employeeController.searchEmployee(
-                this,
-                searchItem,
-                modelKaryawan,
-                inputCariKaryawan,
-                btnHapusPencarianKaryawan,
-                btnCariKaryawan);
+            employeeController.searchEmployee(
+                    this,
+                    searchItem,
+                    modelKaryawan,
+                    inputCariKaryawan,
+                    btnHapusPencarianKaryawan,
+                    btnCariKaryawan);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }// GEN-LAST:event_btnCariKaryawanActionPerformed
 
     private void btnCariSuplierActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCariSuplierActionPerformed
         // TODO add your handling code here:
-        String searchItem = inputCariPerusahaan.getText();
+        try {
+            String searchItem = inputCariPerusahaan.getText();
 
-        companyController.searchCompany(this,
-                searchItem,
-                modelSuplier,
-                inputCariPerusahaan,
-                btnHapusPencarianCompany,
-                btnCariSuplier);
+            companyController.searchCompany(this,
+                    searchItem,
+                    modelSuplier,
+                    inputCariPerusahaan,
+                    btnHapusPencarianCompany,
+                    btnCariSuplier);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }// GEN-LAST:event_btnCariSuplierActionPerformed
 
     private void btnCariBarang1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCariBarang1ActionPerformed
@@ -1906,6 +2036,9 @@ public class Home extends javax.swing.JFrame {
         try {
             String nip = inputNIP.getText();
             String name = inputNKaryawan1.getText();
+            String status = cbStatus.getSelectedItem().toString();
+            char[] pass = PassFieldNewAdmin.getPassword();
+            String password = new String(pass);
             String department = cbDepartemen.getSelectedItem().toString();
 
             employeeController.insertEmployee(
@@ -1913,10 +2046,14 @@ public class Home extends javax.swing.JFrame {
                     nip,
                     name,
                     department,
+                    status,
+                    password,
                     modelKaryawan);
 
             inputNIP.setText("");
             inputNKaryawan1.setText("");
+            cbStatus.setSelectedIndex(0);
+            PassFieldNewAdmin.setText("");
             cbDepartemen.setSelectedIndex(0);
 
             addItemComboBox();
@@ -1927,12 +2064,16 @@ public class Home extends javax.swing.JFrame {
 
     private void btnHapusPencarianCompanyActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnHapusPencarianCompanyActionPerformed
         // TODO add your handling code here:
-        inputCariPerusahaan.setText("");
+        try {
+            inputCariPerusahaan.setText("");
 
-        companyController.loadCompany(modelSuplier);
+            companyController.loadCompany(modelSuplier);
 
-        btnCariSuplier.setVisible(true);
-        btnHapusPencarianCompany.setVisible(false);
+            btnCariSuplier.setVisible(true);
+            btnHapusPencarianCompany.setVisible(false);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }// GEN-LAST:event_btnHapusPencarianCompanyActionPerformed
 
     private void cbDepartemenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbDepartemenActionPerformed
@@ -1959,12 +2100,16 @@ public class Home extends javax.swing.JFrame {
 
     private void btnHapusPencarianKaryawanActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnHapusPencarianKaryawanActionPerformed
         // TODO add your handling code here:
-        inputCariKaryawan.setText("");
+        try {
+            inputCariKaryawan.setText("");
 
-        employeeController.loadEmployee(modelKaryawan);
+            employeeController.loadEmployee(modelKaryawan);
 
-        btnCariKaryawan.setVisible(true);
-        btnHapusPencarianKaryawan.setVisible(false);
+            btnCariKaryawan.setVisible(true);
+            btnHapusPencarianKaryawan.setVisible(false);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }// GEN-LAST:event_btnHapusPencarianKaryawanActionPerformed
 
     /**
@@ -2054,6 +2199,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField inputCariLaporan;
     private javax.swing.JTextField inputCariPerusahaan;
     private javax.swing.JTextArea inputDeskripsiBarang;
+    private javax.swing.JTextField inputDisabledNBarang;
     private javax.swing.JTextField inputEmail;
     private javax.swing.JTextField inputJmlBarangLapor;
     private javax.swing.JTextField inputJumlahPembelian;
@@ -2089,6 +2235,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel labelDepartemen;
     private javax.swing.JLabel labelDeskripsi;
     private javax.swing.JLabel labelDeskripsiEdit;
+    private javax.swing.JLabel labelDisabledNBarang;
     private javax.swing.JLabel labelEmail;
     private javax.swing.JLabel labelJmlBarangLapor;
     private javax.swing.JLabel labelJumlahPembelian;

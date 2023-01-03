@@ -9,13 +9,19 @@ package model;
  * @author panji
  */
 public class Employee extends Department {
+    protected int status;
     protected String employee_name;
     protected String nip;
 
-    public Employee(String employee_name, String nip, String department_name, int idDepartment) {
-        super(idDepartment, department_name);
+    public Employee(int status, String employee_name, String nip, int id, String department_name) {
+        super(id, department_name);
+        this.status = status;
         this.employee_name = employee_name;
         this.nip = nip;
+    }
+
+    public int getStatus() {
+        return status;
     }
 
     public String getEmployee_name() {
@@ -29,9 +35,13 @@ public class Employee extends Department {
     public void setEmployee_name(String employee_name) {
         this.employee_name = employee_name;
     }
-
+    
     public void setNip(String nip) {
         this.nip = nip;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     @Override

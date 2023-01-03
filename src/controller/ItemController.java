@@ -47,15 +47,15 @@ public class ItemController {
                 Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery(check);
 
-                if (rs.next()) {
+                while (rs.next()) {
                     id = rs.getString("item_id");
-                    name = rs.getString("employee_name");
+                    name = rs.getString("item_name");
 
                     if (textName.equalsIgnoreCase(name) || itemID.equals(id)) {
                         JOptionPane.showMessageDialog(
                                 parentComponent,
                                 "Item sudah terdaftar",
-                                "Employee Page",
+                                "Item Page",
                                 JOptionPane.WARNING_MESSAGE
                         );
 
@@ -238,7 +238,7 @@ public class ItemController {
 
             tableModel.setRowCount(0);
             tableModel.fireTableRowsDeleted(0, itemList.size());
-            loadEmployee(tableModel);
+            loadItem(tableModel);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(
@@ -278,7 +278,7 @@ public class ItemController {
 
             tableModel.setRowCount(0);
             tableModel.fireTableRowsDeleted(0, itemList.size());
-            loadEmployee(tableModel);
+            loadItem(tableModel);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(
@@ -371,8 +371,38 @@ public class ItemController {
         }
     }
 
+    public void checkSameItem(
+            Component parentComponent,
+            String itemID
+    ) {
+        try {
+            String id;
+            String check = "SELECT * FROM items";
+
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(check);
+
+            while (rs.next()) {
+                id = rs.getString("item_id");
+
+                if (itemID.equals(id)) {
+                    JOptionPane.showMessageDialog(
+                            parentComponent,
+                            "Item sudah terdaftar",
+                            "Item Page",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+
+                    return;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
     // Read
-    public void loadEmployee(DefaultTableModel tableModel) {
+    public void loadItem(DefaultTableModel tableModel) {
         try {
             conn = db.dbConn();
             String query = "SELECT * FROM items";
@@ -488,8 +518,8 @@ public class ItemController {
 
     private String generateID(String textCategory) {
         char category = 0;
-        
-        switch(textCategory) {
+
+        switch (textCategory) {
             case "Consumer" -> {
                 category = 'C';
                 break;
@@ -511,22 +541,22 @@ public class ItemController {
                 break;
             }
         }
-        
+
         String id = IDGenerator.generateID(category);
-        
+
         return id;
     }
 
     private int getLowStockLevel(int textQuantity) {
         int lowStockLevel = (int) (textQuantity * 0.02);
-        
+
         return lowStockLevel;
     }
 
     private String updateID(String textCategory) {
         char category = 0;
-        
-        switch(textCategory) {
+
+        switch (textCategory) {
             case "Consumer" -> {
                 category = 'C';
                 break;
@@ -548,9 +578,60 @@ public class ItemController {
                 break;
             }
         }
-        
+
         String id = IDGenerator.updateID(category);
-        
+
         return id;
+    }
+
+    public void setQuantity(
+            Component parentComponent,
+            String textKodeBarang, 
+            int textAmount,
+            DefaultTableModel tableModel
+    ) {
+        try {
+            conn = db.dbConn();
+            int newQty = 0;
+            String updateQtyQuery = "UPDATE items "
+                    + "SET quantity = ?, "
+                    + "updated_at = ? "
+                    + "WHERE item_id = ?";
+            
+            for (Item item : itemList) {
+                if(item.getItem_id().equals(textKodeBarang)) {
+                    newQty = item.getQuantity();
+                }
+            }
+            
+            newQty -= textAmount;
+            
+            PreparedStatement ps = conn.prepareStatement(updateQtyQuery);
+            ps.setInt(1, newQty);
+            
+            Timestamp tmp = new Timestamp(System.currentTimeMillis());
+            
+            ps.setTimestamp(2, tmp);
+            ps.setString(3, textKodeBarang);
+            
+            int rowAffected = ps.executeUpdate();
+
+            if (rowAffected > 0) {
+                JOptionPane.showMessageDialog(
+                        parentComponent,
+                        "Update data Success",
+                        "Update Item",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+
+            itemList.clear();
+
+            tableModel.setRowCount(0);
+            tableModel.fireTableRowsDeleted(0, itemList.size());
+            loadItem(tableModel);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
