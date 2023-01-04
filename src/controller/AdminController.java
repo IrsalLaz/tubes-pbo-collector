@@ -2,7 +2,6 @@ package controller;
 
 import java.sql.*;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
 import java.util.ArrayList;
 import model.Admin;
 //import view.auth.Login;
@@ -141,7 +140,7 @@ public class AdminController {
 
         jFrame.dispose();
         home.setTitle("Collector");
-        home.setSize(990, 720);
+        home.setSize(1270, 720);
         home.setVisible(true);
     }
 
@@ -158,7 +157,7 @@ public class AdminController {
         Login login = new Login();
 
         jFrame.dispose();
-        login.setSize(972, 632);
+        login.setSize(1270, 720);
         login.setVisible(true);
     }
 
@@ -175,7 +174,6 @@ public class AdminController {
             
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
             return null;
         }
     }
