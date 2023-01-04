@@ -11,8 +11,8 @@ package model;
 public class Admin extends Employee {
     private String password;
 
-    public Admin(String password, String employee_name, String nip, String department_name, int idDepartment) {
-        super(employee_name, nip, department_name, idDepartment);
+    public Admin(String password, int status, String employee_name, String nip, int id, String department_name) {
+        super(status, employee_name, nip, id, department_name);
         this.password = password;
     }
 
@@ -22,6 +22,11 @@ public class Admin extends Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public int getStatus() {
+        return super.getStatus();
     }
 
     @Override
@@ -63,6 +68,9 @@ public class Admin extends Employee {
     public void setId(int id) {
         super.setId(id);
     }
-    
-    
+
+    @Override
+    public void setStatus(int status) {
+        super.setStatus(status);
+    }
 }

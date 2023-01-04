@@ -40,17 +40,17 @@ public class CompanyController {
 
                 if (rs.next()) {
                     name = rs.getString("company_name");
-                }
 
-                if (textName.equalsIgnoreCase(name)) {
-                    JOptionPane.showMessageDialog(
-                            parentComponent,
-                            "Suplier sudah terdaftar",
-                            "Suplier Page",
-                            JOptionPane.WARNING_MESSAGE
-                    );
+                    if (textName.equalsIgnoreCase(name)) {
+                        JOptionPane.showMessageDialog(
+                                parentComponent,
+                                "Suplier sudah terdaftar",
+                                "Suplier Page",
+                                JOptionPane.WARNING_MESSAGE
+                        );
 
-                    return;
+                        return;
+                    }
                 }
 
                 boolean checkEmail = isValidEmailAddress(textEmail);
@@ -493,7 +493,7 @@ public class CompanyController {
     }
 
     private boolean isValidPhoneNumber(String telepon) {
-        String regex = "^[\\d\\-\\(\\)\\s]{10,12}$";
+        String regex = "^[\\d\\-\\(\\)\\s]{10,13}$";
 
         Pattern pattern = Pattern.compile(regex);
 
@@ -503,5 +503,54 @@ public class CompanyController {
 
     private void addCompany(Company company) {
         companyList.add(company);
+    }
+
+    public int getID(String textNamaPerusahaan) {
+        try {
+            conn = db.dbConn();
+            String query = "SELECT id FROM companies WHERE company_name = ?";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, textNamaPerusahaan);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                return id;
+            } else {
+                System.out.println("Error");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+    }
+
+    public Company getObject(String textNamaPerusahaan) {
+        try {
+            conn = db.dbConn();
+            String query = "SELECT * FROM companies WHERE company_name = ?";
+
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, textNamaPerusahaan);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String company_name = rs.getString("company_name");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String address = rs.getString("address");
+
+                return new Company(
+                        company_name,
+                        address,
+                        email,
+                        phone
+                );
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
 }

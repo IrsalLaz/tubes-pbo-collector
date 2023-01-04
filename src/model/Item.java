@@ -9,17 +9,23 @@ package model;
  * @author panji
  */
 public class Item extends Category {
+    private String item_id;
     private String item_name;
     private int quantity;
     private int low_stock_level;
-    private int description;
+    private String description;
 
-    public Item(String item_name, int quantity, int low_stock_level, int description, String category_name) {
-        super(category_name);
+    public Item(String item_id, String item_name, int quantity, int low_stock_level, String description, int category_id, String category_name) {
+        super(category_id, category_name);
+        this.item_id = item_id;
         this.item_name = item_name;
         this.quantity = quantity;
         this.low_stock_level = low_stock_level;
         this.description = description;
+    }
+
+    public String getItem_id() {
+        return item_id;
     }
 
     public String getItem_name() {
@@ -34,12 +40,16 @@ public class Item extends Category {
         return low_stock_level;
     }
 
-    public int getDescription() {
+    public String getDescription() {
         return description;
     }
 
     public void setItem_name(String item_name) {
         this.item_name = item_name;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
     }
 
     public void setQuantity(int quantity) {
@@ -50,7 +60,7 @@ public class Item extends Category {
         this.low_stock_level = low_stock_level;
     }
 
-    public void setDescription(int description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -64,5 +74,13 @@ public class Item extends Category {
         super.setCategory_name(category_name);
     }
     
-    
+    @Override
+    public int getCategory_id() {
+        return super.getCategory_id(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+
+    @Override
+    public void setCategory_id(int category_id) {
+        super.setCategory_id(category_id); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
 }
