@@ -501,6 +501,11 @@ public class Home extends javax.swing.JFrame {
         btnTambahPembelian.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnTambahPembelian.setForeground(new java.awt.Color(255, 255, 255));
         btnTambahPembelian.setText("Tambah");
+        btnTambahPembelian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahPembelianActionPerformed(evt);
+            }
+        });
 
         inputDeskripsiBarang.setColumns(20);
         inputDeskripsiBarang.setRows(5);
@@ -540,6 +545,11 @@ public class Home extends javax.swing.JFrame {
         btnTambahPenjualan.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnTambahPenjualan.setForeground(new java.awt.Color(255, 255, 255));
         btnTambahPenjualan.setText("Tambah");
+        btnTambahPenjualan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahPenjualanActionPerformed(evt);
+            }
+        });
 
         labelKategori.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelKategori.setForeground(new java.awt.Color(51, 51, 51));
@@ -1565,6 +1575,14 @@ public class Home extends javax.swing.JFrame {
     private void PassFieldNewAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PassFieldNewAdminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PassFieldNewAdminActionPerformed
+
+    private void btnTambahPembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPembelianActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTambahPembelianActionPerformed
+
+    private void btnTambahPenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPenjualanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTambahPenjualanActionPerformed
 
     private void cbKategoriActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
