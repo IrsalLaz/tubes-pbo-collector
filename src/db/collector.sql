@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2023 at 05:28 AM
+-- Generation Time: Jan 04, 2023 at 11:10 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -35,14 +35,6 @@ CREATE TABLE `admins` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `admins`
---
-
-INSERT INTO `admins` (`id`, `nip`, `password`, `created_at`, `updated_at`) VALUES
-(3, '200310142019101020', 'password123', '2023-01-01 17:18:40', '2023-01-01 17:18:40'),
-(5, '200101012019011021', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', '2023-01-02 09:29:41', '2023-01-02 09:29:41');
-
 -- --------------------------------------------------------
 
 --
@@ -61,11 +53,17 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `category_name`, `created_at`, `updated_at`) VALUES
-(1, 'Consumer', '2023-01-02 03:12:34', '2023-01-02 03:12:34'),
-(2, 'Non-Durable', '2023-01-02 03:12:34', '2023-01-02 03:12:34'),
-(3, 'Necessities', '2023-01-02 03:12:34', '2023-01-02 03:12:34'),
-(4, 'Industrial', '2023-01-02 03:12:34', '2023-01-02 03:12:34'),
-(5, 'Agricultural', '2023-01-02 03:12:34', '2023-01-02 03:12:34');
+(1, 'Besi & Baja', '2023-01-04 09:59:36', '2023-01-04 09:59:36'),
+(2, 'Plaster', '2023-01-04 09:59:36', '2023-01-04 09:59:36'),
+(3, 'Cat', '2023-01-04 09:59:36', '2023-01-04 09:59:36'),
+(4, 'Pagar', '2023-01-04 09:59:36', '2023-01-04 09:59:36'),
+(5, 'Alat', '2023-01-04 09:59:36', '2023-01-04 09:59:36'),
+(6, 'Kaca', '2023-01-04 09:59:36', '2023-01-04 09:59:36'),
+(7, 'Elektronik', '2023-01-04 09:59:36', '2023-01-04 09:59:36'),
+(8, 'Sanitasi', '2023-01-04 09:59:36', '2023-01-04 09:59:36'),
+(9, 'Bahan Bangunan', '2023-01-04 09:59:36', '2023-01-04 09:59:36'),
+(10, 'Pompa', '2023-01-04 09:59:36', '2023-01-04 09:59:36'),
+(11, 'Roofing', '2023-01-04 09:59:36', '2023-01-04 09:59:36');
 
 -- --------------------------------------------------------
 
@@ -82,17 +80,6 @@ CREATE TABLE `companies` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `companies`
---
-
-INSERT INTO `companies` (`id`, `company_name`, `email`, `phone`, `address`, `created_at`, `updated_at`) VALUES
-(1, 'PT. Indigo', 'Indofood@gmail.com', '0895348024742', 'Karawang', '2022-12-31 10:09:09', '2023-01-01 16:40:40'),
-(2, 'PT Cafelate', 'Cafelate@gmail.com', '089520039871', 'Jakarta', '2022-12-31 10:09:48', '2022-12-31 10:09:48'),
-(3, 'PT. Indihome', 'Indihome@gmail.com', '089534442447', 'Jakarta', '2022-12-31 10:51:32', '2022-12-31 17:26:00'),
-(4, 'PT. Bengbeng', 'Bengbeng@gmail.com', '089761248135', 'Bandung', '2022-12-31 11:05:33', '2022-12-31 11:05:33'),
-(5, 'PT. Supra', 'Supra@gmail.com', '089514781274', 'Manado', '2022-12-31 11:07:07', '2022-12-31 11:07:07');
 
 -- --------------------------------------------------------
 
@@ -112,11 +99,11 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`id`, `department_name`, `created_at`, `updated_at`) VALUES
-(2, 'Produksi', '2022-12-31 18:12:15', '2022-12-31 18:12:15'),
-(3, 'Sales', '2022-12-31 18:12:15', '2022-12-31 18:12:15'),
-(4, 'President', '2022-12-31 18:12:15', '2022-12-31 18:12:15'),
-(5, 'Sales Manager', '2022-12-31 18:12:15', '2022-12-31 18:12:15'),
-(6, 'Administrasi', '2022-12-31 18:12:15', '2022-12-31 18:12:15');
+(1, 'Store Manager', '2023-01-04 10:09:39', '2023-01-04 10:09:39'),
+(2, 'Keuangan', '2023-01-04 10:09:39', '2023-01-04 10:09:39'),
+(3, 'Quality Control', '2023-01-04 10:09:39', '2023-01-04 10:09:39'),
+(4, 'Administrasi', '2023-01-04 10:09:39', '2023-01-04 10:09:39'),
+(5, 'Gudang dan Angkutan', '2023-01-04 10:09:39', '2023-01-04 10:09:39');
 
 -- --------------------------------------------------------
 
@@ -132,14 +119,6 @@ CREATE TABLE `employees` (
   `department_id` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `employees`
---
-
-INSERT INTO `employees` (`nip`, `employee_name`, `created_at`, `updated_at`, `department_id`, `status`) VALUES
-('200101012019011021', 'Irsal Lazuard', '2023-01-02 09:29:40', '2023-01-02 09:29:40', 6, 1),
-('200310142019101020', 'Panji Dwi Satrio', '2023-01-01 13:44:05', '2023-01-01 14:04:16', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -263,25 +242,25 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `issues`
 --
 ALTER TABLE `issues`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transactions`
@@ -323,7 +302,7 @@ ALTER TABLE `items`
 --
 ALTER TABLE `transactions`
   ADD CONSTRAINT `transactions_FK` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`),
-  ADD CONSTRAINT `transactions_FK_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
+  ADD CONSTRAINT `transactions_FK_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

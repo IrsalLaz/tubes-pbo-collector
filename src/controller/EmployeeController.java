@@ -44,14 +44,16 @@ public class EmployeeController {
         try {
             conn = db.dbConn();
             String name, nip;
+            System.out.println("Passed in insert method");
 
             if (!employeeList.isEmpty()) {
+                System.out.println("Passed in if else");
                 String check = "SELECT * FROM employees";
 
                 Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery(check);
 
-                if (rs.next()) {
+                while (rs.next()) {
                     nip = rs.getString("nip");
                     name = rs.getString("employee_name");
 
@@ -62,10 +64,10 @@ public class EmployeeController {
                                 "Employee Page",
                                 JOptionPane.WARNING_MESSAGE
                         );
-
                         return;
                     }
                 }
+                System.out.println("Passed check nip and name");
 
                 boolean checkNip = isValidNip(textNip);
 
@@ -79,10 +81,12 @@ public class EmployeeController {
 
                     return;
                 }
+                System.out.println("Passed check nip");
 
                 if (textStatus.equalsIgnoreCase("admin")) {
                     int idDepartment = getDepartmentID(textDepartment);
                     int status = 1;
+                    System.out.println("Passed status with id " + status);
 
                     String insertQuery = "INSERT INTO employees("
                             + "nip, "
@@ -112,13 +116,131 @@ public class EmployeeController {
                             idDepartment,
                             textDepartment
                     ));
-                    
+
                     adminController.insertAdmin(
-                            textPassword, 
-                            status, 
-                            textName, 
-                            textNip, 
-                            idDepartment, 
+                            textPassword,
+                            status,
+                            textName,
+                            textNip,
+                            idDepartment,
+                            textDepartment
+                    );
+
+                    int index = employeeList.size() - 1;
+                    tableModel.addRow(new Object[]{
+                        employeeList.get(index).getNip(),
+                        employeeList.get(index).getEmployee_name(),
+                        employeeList.get(index).getDepartment_name(),});
+
+                    JOptionPane.showMessageDialog(
+                            parentComponent,
+                            "Karyawan berhasil ditambahkan!",
+                            "Karyawan Page",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                } else if (textStatus.equalsIgnoreCase("employee")) {
+                    System.out.println("Passed in else employee");
+                    int idDepartment = getDepartmentID(textDepartment);
+                    int status = 2;
+
+                    String insertQuery = "INSERT INTO employees("
+                            + "nip, "
+                            + "employee_name, "
+                            + "created_at, "
+                            + "updated_at, "
+                            + "department_id, "
+                            + "status) "
+                            + "VALUES(?,?,?,?,?,?)";
+
+                    PreparedStatement ps = conn.prepareStatement(insertQuery);
+                    ps.setString(1, textNip);
+                    ps.setString(2, textName);
+
+                    Timestamp tmp = new Timestamp(System.currentTimeMillis());
+
+                    ps.setTimestamp(3, tmp);
+                    ps.setTimestamp(4, tmp);
+                    ps.setInt(5, idDepartment);
+                    ps.setInt(6, status);
+                    ps.executeUpdate();
+
+                    addEmployee(new Employee(
+                            status,
+                            textName,
+                            textNip,
+                            idDepartment,
+                            textDepartment
+                    ));
+
+                    int index = employeeList.size() - 1;
+                    tableModel.addRow(new Object[]{
+                        employeeList.get(index).getNip(),
+                        employeeList.get(index).getEmployee_name(),
+                        employeeList.get(index).getDepartment_name(),});
+
+                    JOptionPane.showMessageDialog(
+                            parentComponent,
+                            "Karyawan berhasil ditambahkan!",
+                            "Karyawan Page",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                } else {
+                    // Kosong
+                }
+            } else {
+                boolean checkNip = isValidNip(textNip);
+
+                if (!checkNip) {
+                    JOptionPane.showMessageDialog(
+                            parentComponent,
+                            "NIP tidak valid",
+                            "Employee Page",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+
+                    return;
+                }
+
+                if (textStatus.equalsIgnoreCase("admin")) {
+                    int idDepartment = getDepartmentID(textDepartment);
+                    int status = 1;
+                    System.out.println("Passed status with id " + status);
+
+                    String insertQuery = "INSERT INTO employees("
+                            + "nip, "
+                            + "employee_name, "
+                            + "created_at, "
+                            + "updated_at, "
+                            + "department_id, "
+                            + "status) "
+                            + "VALUES(?,?,?,?,?,?)";
+
+                    PreparedStatement ps = conn.prepareStatement(insertQuery);
+                    ps.setString(1, textNip);
+                    ps.setString(2, textName);
+
+                    Timestamp tmp = new Timestamp(System.currentTimeMillis());
+
+                    ps.setTimestamp(3, tmp);
+                    ps.setTimestamp(4, tmp);
+                    ps.setInt(5, idDepartment);
+                    ps.setInt(6, status);
+                    ps.executeUpdate();
+
+                    addEmployee(new Employee(
+                            status,
+                            textName,
+                            textNip,
+                            idDepartment,
+                            textDepartment
+                    ));
+
+                    adminController.insertAdmin(
+                            textPassword,
+                            status,
+                            textName,
+                            textNip,
+                            idDepartment,
                             textDepartment
                     );
 
@@ -178,64 +300,8 @@ public class EmployeeController {
                             JOptionPane.INFORMATION_MESSAGE
                     );
                 } else {
-
+                    // Kosong
                 }
-            } else {
-                boolean checkNip = isValidNip(textNip);
-
-                if (!checkNip) {
-                    JOptionPane.showMessageDialog(
-                            parentComponent,
-                            "NIP tidak valid",
-                            "Employee Page",
-                            JOptionPane.WARNING_MESSAGE
-                    );
-
-                    return;
-                }
-                
-                int status = 2;
-                int idDepartment = getDepartmentID(textDepartment);
-
-                String insertQuery = "INSERT INTO employees("
-                        + "nip, "
-                        + "employee_name, "
-                        + "created_at, "
-                        + "updated_at, "
-                        + "department_id) "
-                        + "VALUES(?,?,?,?,?)";
-
-                PreparedStatement ps = conn.prepareStatement(insertQuery);
-                ps.setString(1, textNip);
-                ps.setString(2, textName);
-
-                Timestamp tmp = new Timestamp(System.currentTimeMillis());
-
-                ps.setTimestamp(3, tmp);
-                ps.setTimestamp(4, tmp);
-                ps.setInt(5, idDepartment);
-                ps.executeUpdate();
-
-                addEmployee(new Employee(
-                        status,
-                        textName,
-                        textNip,
-                        idDepartment,
-                        textDepartment
-                ));
-
-                int index = employeeList.size() - 1;
-                tableModel.addRow(new Object[]{
-                    employeeList.get(index).getNip(),
-                    employeeList.get(index).getEmployee_name(),
-                    employeeList.get(index).getDepartment_name(),});
-
-                JOptionPane.showMessageDialog(
-                        parentComponent,
-                        "Karyawan berhasil ditambahkan!",
-                        "Karyawan Page",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -433,7 +499,7 @@ public class EmployeeController {
                 int status = rset.getInt("status");
 
                 String departmentName = getDepartmentName(department_id);
-                
+
                 addEmployee(new Employee(
                         status,
                         name,
@@ -469,6 +535,8 @@ public class EmployeeController {
                 String employeeName = rs.getString("employee_name");
                 String nip = rs.getString("nip");
                 int departmentID = rs.getInt("department_id");
+
+                // ERROR HERE!!!
                 int status = rs.getInt("status");
 
                 String departmentName = getDepartmentName(departmentID);

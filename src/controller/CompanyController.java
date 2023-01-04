@@ -493,7 +493,7 @@ public class CompanyController {
     }
 
     private boolean isValidPhoneNumber(String telepon) {
-        String regex = "^[\\d\\-\\(\\)\\s]{10,12}$";
+        String regex = "^[\\d\\-\\(\\)\\s]{10,13}$";
 
         Pattern pattern = Pattern.compile(regex);
 

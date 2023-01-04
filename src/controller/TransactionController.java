@@ -1,14 +1,11 @@
 package controller;
 
 import java.awt.Component;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
+import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.Date;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import model.Company;
 import model.Item;
@@ -57,10 +54,11 @@ public class TransactionController {
                         textDescription,
                         tableModelItem
                 );
-                
+
                 String idBarang = getItemID(textNamaBarang);
                 int idCompany = getCompanyID(textNamaPerusahaan);
                 Company getCompany = getCompany(textNamaPerusahaan);
+
                 Item item = new Item(
                         idBarang,
                         textNamaBarang,
@@ -92,11 +90,16 @@ public class TransactionController {
                 ps.setTimestamp(6, tmp);
                 ps.executeUpdate();
 
+                Date date = new Date(tmp.getTime());
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = formatter.format(date);
+
                 addTransaction(new Transaction(
                         textQuantity,
                         textAction,
                         item,
-                        getCompany
+                        getCompany,
+                        formattedDate
                 ));
 
                 int index = transactionList.size() - 1;
@@ -104,7 +107,8 @@ public class TransactionController {
                     transactionList.get(index).getItem().getItem_name(),
                     transactionList.get(index).getCompany().getCompany_name(),
                     transactionList.get(index).getAmount(),
-                    transactionList.get(index).getAction()
+                    transactionList.get(index).getAction(),
+                    transactionList.get(index).getTanggal_transaksi()
                 });
 
                 JOptionPane.showMessageDialog(
@@ -172,11 +176,16 @@ public class TransactionController {
                 ps.setTimestamp(6, tmp);
                 ps.executeUpdate();
 
+                Date date = new Date(tmp.getTime());
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = formatter.format(date);
+
                 addTransaction(new Transaction(
                         textAmount,
                         textAction,
                         getItem,
-                        getCompany
+                        getCompany,
+                        formattedDate
                 ));
 
                 itemController.setQuantity(
@@ -185,13 +194,14 @@ public class TransactionController {
                         textAmount,
                         tableModelItem
                 );
-                
+
                 int index = transactionList.size() - 1;
                 tableModelTransaction.addRow(new Object[]{
                     transactionList.get(index).getItem().getItem_name(),
                     transactionList.get(index).getCompany().getCompany_name(),
                     transactionList.get(index).getAmount(),
-                    transactionList.get(index).getAction()
+                    transactionList.get(index).getAction(),
+                    transactionList.get(index).getTanggal_transaksi()
                 });
 
                 JOptionPane.showMessageDialog(
@@ -215,86 +225,93 @@ public class TransactionController {
     }
 
     // Search
-//    public void searchItem(
-//            Component parentComponent,
-//            String search,
-//            DefaultTableModel tableModel,
-//            JTextField inputCariItem,
-//            JButton btnHapusPencarianItem,
-//            JButton btnCariItem
-//    ) {
-//        try {
-//            conn = db.dbConn();
-//            String searchQuery = "SELECT * FROM items i "
-//                    + "JOIN  categories c "
-//                    + "ON i.category_id = c.id "
-//                    + "WHERE LOWER(employee_name) LIKE ? OR "
-//                    + "LOWER(item_id) = ? OR "
-//                    + "LOWER(c.category_name) LIKE ?";
-//
-//            PreparedStatement ps = conn.prepareStatement(searchQuery);
-//            ps.setString(1, "%" + search.toLowerCase() + "%");
-//            ResultSet rs = ps.executeQuery();
-//
-//            if (!rs.next()) {
-//                JOptionPane.showMessageDialog(parentComponent,
-//                        "Item yang anda cari tidak ada",
-//                        "Search Data",
-//                        JOptionPane.INFORMATION_MESSAGE
-//                );
-//
-//                inputCariItem.setText("");
-//
-//                return;
-//            } else {
-//                itemList.clear();
-//
-//                tableModel.setRowCount(0);
-//                tableModel.fireTableRowsDeleted(0, itemList.size());
-//
-//                do {
-//                    String id = rs.getString("item_id");
-//                    String name = rs.getString("item_name");
-//                    int qty = rs.getInt("quantity");
-//                    int lowStockLvl = rs.getInt("low_stock_level");
-//                    String desc = rs.getString("description");
-//                    int categoryID = rs.getInt("category_id");
-//
-//                    String categoryName = getCategoryName(categoryID);
-//
-//                    addItem(new Item(
-//                            id,
-//                            name,
-//                            qty,
-//                            lowStockLvl,
-//                            desc,
-//                            categoryID,
-//                            categoryName
-//                    ));
-//
-//                    int index = itemList.size() - 1;
-//                    tableModel.addRow(new Object[]{
-//                        itemList.get(index).getItem_id(),
-//                        itemList.get(index).getItem_name(),
-//                        itemList.get(index).getCategory_name(),
-//                        itemList.get(index).getQuantity(),
-//                        itemList.get(index).getLow_stock_level(),
-//                        itemList.get(index).getDescription(),});
-//                } while (rs.next());
-//            }
-//            btnHapusPencarianItem.setVisible(true);
-//            btnCariItem.setVisible(false);
-//        } catch (SQLException ex) {
-//            System.out.println(ex.getMessage());
-//            JOptionPane.showMessageDialog(
-//                    parentComponent,
-//                    "Gagal Mencari Data, periksa koneksi anda",
-//                    "Cari Item",
-//                    JOptionPane.INFORMATION_MESSAGE
-//            );
-//        }
-//    }
-    
+    public void searchTransaction(
+            Component parentComponent,
+            String search,
+            DefaultTableModel tableModel,
+            JTextField inputCariTransaction,
+            JButton btnHapusPencarianTransaction,
+            JButton btnCariTransaction
+    ) {
+        try {
+            conn = db.dbConn();
+            String searchQuery = "SELECT * FROM transactions tr "
+                    + "JOIN items it ON it.item_id = tr.item_id "
+                    + "JOIN companies co ON co.id = tr.company_id "
+                    + "WHERE LOWER(it.item_name) LIKE ? OR "
+                    + "LOWER(co.company_name) LIKE ? OR "
+                    + "LOWER(tr.action) LIKE ? OR "
+                    + "LOWER(tr.created_at) LIKE ?";
+
+            PreparedStatement ps = conn.prepareStatement(searchQuery);
+            ps.setString(1, "%" + search.toLowerCase() + "%");
+            ps.setString(2, "%" + search.toLowerCase() + "%");
+            ps.setString(3, "%" + search.toLowerCase() + "%");
+            ps.setString(4, "%" + search.toLowerCase() + "%");
+            ResultSet rs = ps.executeQuery();
+
+            if (!rs.next()) {
+                JOptionPane.showMessageDialog(parentComponent,
+                        "Transaksi yang anda cari tidak ada",
+                        "Search Data",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+
+                inputCariTransaction.setText("");
+
+                return;
+            } else {
+                transactionList.clear();
+
+                tableModel.setRowCount(0);
+                tableModel.fireTableRowsDeleted(0, transactionList.size());
+
+                do {
+                    String itemID = rs.getString("item_id");
+                    int companyID = rs.getInt("company_id");
+                    int amount = rs.getInt("amount");
+                    String action = rs.getString("action");
+                    Timestamp tmp = rs.getTimestamp("created_at");
+
+                    Item item = getItem(itemID);
+                    Company company = getCompany(companyID);
+
+                    Date date = new Date(tmp.getTime());
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    String formattedDate = formatter.format(date);
+
+                    addTransaction(new Transaction(
+                            amount,
+                            action,
+                            item,
+                            company,
+                            formattedDate
+                    ));
+
+                    int index = transactionList.size() - 1;
+
+                    tableModel.addRow(new Object[]{
+                        transactionList.get(index).getItem().getItem_name(),
+                        transactionList.get(index).getCompany().getCompany_name(),
+                        transactionList.get(index).getAmount(),
+                        transactionList.get(index).getAction(),
+                        transactionList.get(index).getTanggal_transaksi()
+                    });
+                } while (rs.next());
+            }
+            btnHapusPencarianTransaction.setVisible(true);
+            btnCariTransaction.setVisible(false);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(
+                    parentComponent,
+                    "Gagal Mencari Data, periksa koneksi anda",
+                    "Cari Item",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+    }
+
     private void addTransaction(Transaction transaction) {
         transactionList.add(transaction);
     }
@@ -388,15 +405,21 @@ public class TransactionController {
                 int companyID = rs.getInt("company_id");
                 int amount = rs.getInt("amount");
                 String action = rs.getString("action");
+                Timestamp tmp = rs.getTimestamp("created_at");
 
                 Item item = getItem(itemID);
                 Company company = getCompany(companyID);
+
+                Date date = new Date(tmp.getTime());
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = formatter.format(date);
 
                 addTransaction(new Transaction(
                         amount,
                         action,
                         item,
-                        company
+                        company,
+                        formattedDate
                 ));
 
                 int index = transactionList.size() - 1;
@@ -405,7 +428,8 @@ public class TransactionController {
                     transactionList.get(index).getItem().getItem_name(),
                     transactionList.get(index).getCompany().getCompany_name(),
                     transactionList.get(index).getAmount(),
-                    transactionList.get(index).getAction()
+                    transactionList.get(index).getAction(),
+                    transactionList.get(index).getTanggal_transaksi()
                 });
             }
         } catch (SQLException ex) {

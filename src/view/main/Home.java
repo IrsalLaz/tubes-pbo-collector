@@ -100,6 +100,7 @@ public class Home extends javax.swing.JFrame {
         // Transaction
         labelDisabledNBarang.setEnabled(false);
         inputDisabledNBarang.setEnabled(false);
+        btnHapusPencarianBarang1.setVisible(false);
 
         // Issue
         btnUpdateLaporan.setVisible(false);
@@ -144,6 +145,7 @@ public class Home extends javax.swing.JFrame {
         modelTransaction.addColumn("Company");
         modelTransaction.addColumn("Amount");
         modelTransaction.addColumn("Action");
+        modelTransaction.addColumn("Tanggal Transaksi");
 
         tableTransaksi.setModel(modelTransaction);
         transactionController.loadTransaction(modelTransaction);
@@ -154,6 +156,7 @@ public class Home extends javax.swing.JFrame {
         modelIssue.addColumn("employee name");
         modelIssue.addColumn("stacks");
         modelIssue.addColumn("description");
+        modelIssue.addColumn("tanggal issue");
 
         tableLaporkan.setModel(modelIssue);
         issueController.loadIssue(modelIssue);
@@ -271,6 +274,7 @@ public class Home extends javax.swing.JFrame {
         cbKategori = new javax.swing.JComboBox<>();
         inputDisabledNBarang = new javax.swing.JTextField();
         labelDisabledNBarang = new javax.swing.JLabel();
+        btnHapusPencarianBarang1 = new javax.swing.JButton();
         laporBarangPage = new javax.swing.JPanel();
         header4 = new javax.swing.JDesktopPane();
         title4 = new javax.swing.JLabel();
@@ -545,7 +549,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(892, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -583,15 +587,23 @@ public class Home extends javax.swing.JFrame {
 
         tableTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "item name", "company", "amount", "action"
+                "item name", "company", "amount", "action", "tanggal transaksi"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tableTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableTransaksiMouseClicked(evt);
@@ -700,6 +712,16 @@ public class Home extends javax.swing.JFrame {
         labelDisabledNBarang.setForeground(new java.awt.Color(51, 51, 51));
         labelDisabledNBarang.setText("Nama barang:");
 
+        btnHapusPencarianBarang1.setBackground(new java.awt.Color(115, 114, 114));
+        btnHapusPencarianBarang1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnHapusPencarianBarang1.setForeground(new java.awt.Color(255, 255, 255));
+        btnHapusPencarianBarang1.setText("Hapus Pencarian");
+        btnHapusPencarianBarang1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusPencarianBarang1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout transaksiPageLayout = new javax.swing.GroupLayout(transaksiPage);
         transaksiPage.setLayout(transaksiPageLayout);
         transaksiPageLayout.setHorizontalGroup(
@@ -708,11 +730,6 @@ public class Home extends javax.swing.JFrame {
             .addGroup(transaksiPageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transaksiPageLayout.createSequentialGroup()
-                        .addComponent(inputCariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCariBarang1)
-                        .addGap(12, 12, 12))
                     .addComponent(jScrollPane1)
                     .addGroup(transaksiPageLayout.createSequentialGroup()
                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -762,7 +779,14 @@ public class Home extends javax.swing.JFrame {
                                             .addComponent(inputDisabledNBarang)))
                                     .addGroup(transaksiPageLayout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(btnTambahPenjualan)))
+                                        .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(transaksiPageLayout.createSequentialGroup()
+                                                .addComponent(inputCariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnCariBarang1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnHapusPencarianBarang1))
+                                            .addComponent(btnTambahPenjualan))))
                                 .addGap(36, 36, 36))))))
         );
         transaksiPageLayout.setVerticalGroup(
@@ -792,7 +816,7 @@ public class Home extends javax.swing.JFrame {
                             .addComponent(labelDeskripsi)
                             .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(transaksiPageLayout.createSequentialGroup()
-                        .addGap(130, 130, 130)
+                        .addGap(136, 136, 136)
                         .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelKodeBarangBeliJual)
                             .addComponent(cbKodeBarangJual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -817,7 +841,8 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(transaksiPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputCariBarang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCariBarang1))
+                    .addComponent(btnCariBarang1)
+                    .addComponent(btnHapusPencarianBarang1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
@@ -881,21 +906,28 @@ public class Home extends javax.swing.JFrame {
 
         tableLaporkan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "issue id", "item name", "employee name", "stacks", "description"
+                "issue id", "item name", "employee name", "stacks", "description", "tanggal  issue"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tableLaporkan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1110,7 +1142,15 @@ public class Home extends javax.swing.JFrame {
             new String [] {
                 "id", "item_name", "category", "quantity", "low_stock_level", "description"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tableStokBarang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableStokBarangMouseClicked(evt);
@@ -1218,15 +1258,8 @@ public class Home extends javax.swing.JFrame {
             .addComponent(header2)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, stokPageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(stokPageLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnResetBarangEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnHapusBarangEdit)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUpdateBarangEdit))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, stokPageLayout.createSequentialGroup()
                         .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(labelNamaBarangEdit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                             .addComponent(labelJumlahEdit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1234,26 +1267,33 @@ public class Home extends javax.swing.JFrame {
                         .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inputNBarangEdit)
                             .addComponent(inputJumlahEdit, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, stokPageLayout.createSequentialGroup()
+                    .addGroup(stokPageLayout.createSequentialGroup()
                         .addComponent(labelKategoriEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbKategoriEdit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, stokPageLayout.createSequentialGroup()
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1044, Short.MAX_VALUE)
+                    .addGroup(stokPageLayout.createSequentialGroup()
                         .addComponent(labelDeskripsiEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane8))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, stokPageLayout.createSequentialGroup()
+                    .addGroup(stokPageLayout.createSequentialGroup()
+                        .addComponent(labelPembelian2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, stokPageLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(stokPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelPembelian2)
-                            .addGroup(stokPageLayout.createSequentialGroup()
-                                .addGap(390, 390, 390)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, stokPageLayout.createSequentialGroup()
+                                .addComponent(btnResetBarangEdit)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnHapusBarangEdit)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUpdateBarangEdit))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, stokPageLayout.createSequentialGroup()
                                 .addComponent(inputPencarianBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnHapusPencarianBarang)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCariBarang)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(btnCariBarang)))))
                 .addContainerGap())
         );
         stokPageLayout.setVerticalGroup(
@@ -1727,40 +1767,39 @@ public class Home extends javax.swing.JFrame {
             .addGroup(suplierPageLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(suplierPageLayout.createSequentialGroup()
-                            .addComponent(labelNPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(inputNPerusahaan))
-                        .addGroup(suplierPageLayout.createSequentialGroup()
-                            .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(inputEmail))
-                        .addGroup(suplierPageLayout.createSequentialGroup()
-                            .addComponent(labelTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(inputTelepon))
-                        .addGroup(suplierPageLayout.createSequentialGroup()
-                            .addComponent(labelAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, suplierPageLayout.createSequentialGroup()
-                            .addComponent(btnTambahSuplier)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnResetSuplier3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnDeleteSuplier2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnUpdateSuplier1)))
                     .addComponent(jScrollPane5)
+                    .addGroup(suplierPageLayout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(suplierPageLayout.createSequentialGroup()
+                        .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelNPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputNPerusahaan)
+                            .addComponent(inputEmail)
+                            .addComponent(jScrollPane4)
+                            .addComponent(inputTelepon)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, suplierPageLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(inputCariPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnHapusPencarianCompany)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCariSuplier)))
+                        .addGroup(suplierPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, suplierPageLayout.createSequentialGroup()
+                                .addComponent(inputCariPerusahaan, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnHapusPencarianCompany)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCariSuplier))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, suplierPageLayout.createSequentialGroup()
+                                .addComponent(btnTambahSuplier)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnResetSuplier3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDeleteSuplier2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnUpdateSuplier1)))))
                 .addContainerGap())
         );
         suplierPageLayout.setVerticalGroup(
@@ -2019,6 +2058,17 @@ public class Home extends javax.swing.JFrame {
 
     private void btnHapusPencarianBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusPencarianBarangActionPerformed
         // TODO add your handling code here:
+        try {
+            inputCariBarang1.setText("");
+
+            itemController.loadItem(modelItem);
+
+            btnCariBarang.setVisible(true);
+            btnHapusPencarianBarang.setVisible(false);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }//GEN-LAST:event_btnHapusPencarianBarangActionPerformed
 
     private void inputJmlBarangLapor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputJmlBarangLapor1ActionPerformed
@@ -2044,6 +2094,16 @@ public class Home extends javax.swing.JFrame {
 
     private void btnHapusPencarianLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusPencarianLaporanActionPerformed
         // TODO add your handling code here:
+        try {
+            inputCariLaporan.setText("");
+
+            issueController.loadIssue(modelIssue);
+
+            btnCariLaporan.setVisible(true);
+            btnHapusPencarianLaporan.setVisible(false);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnHapusPencarianLaporanActionPerformed
 
     private void tableLaporkanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableLaporkanMouseClicked
@@ -2085,6 +2145,185 @@ public class Home extends javax.swing.JFrame {
 
         });
     }//GEN-LAST:event_cbKodeBarangLaporActionPerformed
+
+    private void btnHapusPencarianBarang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusPencarianBarang1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            inputCariBarang1.setText("");
+
+            transactionController.loadTransaction(modelTransaction);
+
+            btnCariBarang1.setVisible(true);
+            btnHapusPencarianBarang1.setVisible(false);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnHapusPencarianBarang1ActionPerformed
+
+    private void btnHapusPencarianCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusPencarianCompanyActionPerformed
+        // TODO add your handling code here:
+        try {
+            inputCariPerusahaan.setText("");
+
+            companyController.loadCompany(modelSuplier);
+
+            btnCariSuplier.setVisible(true);
+            btnHapusPencarianCompany.setVisible(false);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnHapusPencarianCompanyActionPerformed
+
+    private void btnResetSuplier3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetSuplier3ActionPerformed
+        // TODO add your handling code here:
+        inputNPerusahaan.setText("");
+        inputEmail.setText("");
+        inputTelepon.setText("");
+        taAlamat.setText("");
+
+        btnTambahSuplier.setVisible(true);
+        btnUpdateSuplier1.setVisible(false);
+        btnDeleteSuplier2.setVisible(false);
+        btnResetSuplier3.setVisible(false);
+    }//GEN-LAST:event_btnResetSuplier3ActionPerformed
+
+    private void btnDeleteSuplier2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSuplier2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            int row = tableSuplier.getSelectedRow();
+
+            String oldName = companyController.getCompanyList().get(row).getCompany_name();
+
+            companyController.deleteCompany(
+                    this,
+                    modelSuplier,
+                    oldName);
+
+            inputNPerusahaan.setText("");
+            inputEmail.setText("");
+            inputTelepon.setText("");
+            taAlamat.setText("");
+
+            addItemComboBox();
+            btnTambahSuplier.setVisible(true);
+            btnUpdateSuplier1.setVisible(false);
+            btnDeleteSuplier2.setVisible(false);
+            btnResetSuplier3.setVisible(false);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_btnDeleteSuplier2ActionPerformed
+
+    private void btnUpdateSuplier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSuplier1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            int row = tableSuplier.getSelectedRow();
+
+            String name = inputNPerusahaan.getText();
+            String email = inputEmail.getText();
+            String phone = inputTelepon.getText();
+            String address = taAlamat.getText();
+
+            String oldName = companyController.getCompanyList().get(row).getCompany_name();
+
+            companyController.updateCompany(
+                    this,
+                    name,
+                    email,
+                    phone,
+                    address,
+                    modelSuplier,
+                    oldName);
+
+            inputNPerusahaan.setText("");
+            inputEmail.setText("");
+            inputTelepon.setText("");
+            taAlamat.setText("");
+
+            addItemComboBox();
+            btnTambahSuplier.setVisible(true);
+            btnUpdateSuplier1.setVisible(false);
+            btnDeleteSuplier2.setVisible(false);
+            btnResetSuplier3.setVisible(false);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }//GEN-LAST:event_btnUpdateSuplier1ActionPerformed
+
+    private void btnCariSuplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariSuplierActionPerformed
+        // TODO add your handling code here:
+        try {
+            String searchItem = inputCariPerusahaan.getText();
+
+            companyController.searchCompany(this,
+                    searchItem,
+                    modelSuplier,
+                    inputCariPerusahaan,
+                    btnHapusPencarianCompany,
+                    btnCariSuplier);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnCariSuplierActionPerformed
+
+    private void tableSuplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableSuplierMouseClicked
+        // TODO add your handling code here:
+        int row = tableSuplier.getSelectedRow();
+
+        String name = companyController.getCompanyList().get(row).getCompany_name();
+        String email = companyController.getCompanyList().get(row).getEmail();
+        String phone = companyController.getCompanyList().get(row).getPhone();
+        String alamat = companyController.getCompanyList().get(row).getAddresss();
+
+        inputNPerusahaan.setText(name);
+        inputEmail.setText(email);
+        inputTelepon.setText(phone);
+        taAlamat.setText(alamat);
+
+        btnTambahSuplier.setVisible(false);
+        btnUpdateSuplier1.setVisible(true);
+        btnDeleteSuplier2.setVisible(true);
+        btnResetSuplier3.setVisible(true);
+    }//GEN-LAST:event_tableSuplierMouseClicked
+
+    private void btnTambahSuplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahSuplierActionPerformed
+        // TODO add your handling code here:
+        try {
+            String name = inputNPerusahaan.getText();
+            String email = inputEmail.getText();
+            String phone = inputTelepon.getText();
+            String address = taAlamat.getText();
+
+            companyController.insertCompany(
+                    this,
+                    name,
+                    email,
+                    phone,
+                    address,
+                    modelSuplier);
+
+            inputNPerusahaan.setText("");
+            inputEmail.setText("");
+            inputTelepon.setText("");
+            taAlamat.setText("");
+
+            addItemComboBox();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnTambahSuplierActionPerformed
+
+    private void inputTeleponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTeleponActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTeleponActionPerformed
+
+    private void inputEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputEmailActionPerformed
+
+    private void inputNPerusahaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNPerusahaanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputNPerusahaanActionPerformed
 
     private void cbKategoriActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -2177,18 +2416,6 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_inputNKaryawan1ActionPerformed
 
-    private void inputNPerusahaanActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_inputNPerusahaanActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_inputNPerusahaanActionPerformed
-
-    private void inputEmailActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_inputEmailActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_inputEmailActionPerformed
-
-    private void inputTeleponActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_inputTeleponActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_inputTeleponActionPerformed
-
     private void inputJmlBarangLaporActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_inputJmlBarangLaporActionPerformed
         // TODO add your handling code here:
     }// GEN-LAST:event_inputJmlBarangLaporActionPerformed
@@ -2224,6 +2451,20 @@ public class Home extends javax.swing.JFrame {
 
     private void btnCariLaporanActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCariLaporanActionPerformed
         // TODO add your handling code here:
+        try {
+            String search = inputCariLaporan.getText();
+
+            issueController.searchIssue(
+                    this,
+                    search,
+                    modelIssue,
+                    inputCariLaporan,
+                    btnHapusPencarianLaporan,
+                    btnCariLaporan
+            );
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }// GEN-LAST:event_btnCariLaporanActionPerformed
 
     private void btnCariKaryawanActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCariKaryawanActionPerformed
@@ -2243,33 +2484,28 @@ public class Home extends javax.swing.JFrame {
         }
     }// GEN-LAST:event_btnCariKaryawanActionPerformed
 
-    private void btnCariSuplierActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCariSuplierActionPerformed
+    private void btnCariBarang1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCariBarang1ActionPerformed
         // TODO add your handling code here:
         try {
-            String searchItem = inputCariPerusahaan.getText();
+            String searchItem = inputCariBarang1.getText();
 
-            companyController.searchCompany(this,
+            transactionController.searchTransaction(
+                    this,
                     searchItem,
-                    modelSuplier,
-                    inputCariPerusahaan,
-                    btnHapusPencarianCompany,
-                    btnCariSuplier);
+                    modelTransaction,
+                    inputCariBarang1,
+                    btnHapusPencarianBarang1,
+                    btnCariBarang1
+            );
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }// GEN-LAST:event_btnCariSuplierActionPerformed
-
-    private void btnCariBarang1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCariBarang1ActionPerformed
-        // TODO add your handling code here:
     }// GEN-LAST:event_btnCariBarang1ActionPerformed
+// GEN-LAST:event_btnCariBarang1ActionPerformed
 
     private void inputNBarangActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_inputNBarangActionPerformed
         // TODO add your handling code here:
-    }// GEN-LAST:event_inputNBarangActionPerformed
-
-    private void cbSuplierBeliActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbSuplierBeliActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_cbSuplierBeliActionPerformed
+    }
 
     private void cbKategoriEditActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbKategoriEditActionPerformed
         // TODO add your handling code here:
@@ -2277,150 +2513,15 @@ public class Home extends javax.swing.JFrame {
 
     private void inputNBarangEditActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_inputNBarangEditActionPerformed
         // TODO add your handling code here:
-    }// GEN-LAST:event_inputNBarangEditActionPerformed
-
-    private void cbKodeBarangEditActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbKodeBarangEditActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_cbKodeBarangEditActionPerformed
-
-    private void cbKodeBarangBeliJualActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbKodeBarangBeliJualActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_cbKodeBarangBeliJualActionPerformed
+    }
 
     private void cbPerusahaanJualActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbPerusahaanJualActionPerformed
         // TODO add your handling code here:
-    }// GEN-LAST:event_cbPerusahaanJualActionPerformed
-
-    private void btnSimpanBarangActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSimpanBarangActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_btnSimpanBarangActionPerformed
-
-    private void btnTambahSuplierActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTambahSuplierActionPerformed
-        // TODO add your handling code here:
-        try {
-            String name = inputNPerusahaan.getText();
-            String email = inputEmail.getText();
-            String phone = inputTelepon.getText();
-            String address = taAlamat.getText();
-
-            companyController.insertCompany(
-                    this,
-                    name,
-                    email,
-                    phone,
-                    address,
-                    modelSuplier);
-
-            inputNPerusahaan.setText("");
-            inputEmail.setText("");
-            inputTelepon.setText("");
-            taAlamat.setText("");
-
-            addItemComboBox();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }// GEN-LAST:event_btnTambahSuplierActionPerformed
+    }
 
     private void tableTransaksiMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tableTransaksiMouseClicked
         // TODO add your handling code here:
     }// GEN-LAST:event_tableTransaksiMouseClicked
-
-    private void tableSuplierMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tableSuplierMouseClicked
-        // TODO add your handling code here:
-        int row = tableSuplier.getSelectedRow();
-
-        String name = companyController.getCompanyList().get(row).getCompany_name();
-        String email = companyController.getCompanyList().get(row).getEmail();
-        String phone = companyController.getCompanyList().get(row).getPhone();
-        String alamat = companyController.getCompanyList().get(row).getAddresss();
-
-        inputNPerusahaan.setText(name);
-        inputEmail.setText(email);
-        inputTelepon.setText(phone);
-        taAlamat.setText(alamat);
-
-        btnTambahSuplier.setVisible(false);
-        btnUpdateSuplier1.setVisible(true);
-        btnDeleteSuplier2.setVisible(true);
-        btnResetSuplier3.setVisible(true);
-    }// GEN-LAST:event_tableSuplierMouseClicked
-
-    private void btnUpdateSuplier1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUpdateSuplier1ActionPerformed
-        // TODO add your handling code here:
-        try {
-            int row = tableSuplier.getSelectedRow();
-
-            String name = inputNPerusahaan.getText();
-            String email = inputEmail.getText();
-            String phone = inputTelepon.getText();
-            String address = taAlamat.getText();
-
-            String oldName = companyController.getCompanyList().get(row).getCompany_name();
-
-            companyController.updateCompany(
-                    this,
-                    name,
-                    email,
-                    phone,
-                    address,
-                    modelSuplier,
-                    oldName);
-
-            inputNPerusahaan.setText("");
-            inputEmail.setText("");
-            inputTelepon.setText("");
-            taAlamat.setText("");
-
-            addItemComboBox();
-            btnTambahSuplier.setVisible(true);
-            btnUpdateSuplier1.setVisible(false);
-            btnDeleteSuplier2.setVisible(false);
-            btnResetSuplier3.setVisible(false);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }// GEN-LAST:event_btnUpdateSuplier1ActionPerformed
-
-    private void btnDeleteSuplier2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteSuplier2ActionPerformed
-        // TODO add your handling code here:
-        try {
-            int row = tableSuplier.getSelectedRow();
-
-            String oldName = companyController.getCompanyList().get(row).getCompany_name();
-
-            companyController.deleteCompany(
-                    this,
-                    modelSuplier,
-                    oldName);
-
-            inputNPerusahaan.setText("");
-            inputEmail.setText("");
-            inputTelepon.setText("");
-            taAlamat.setText("");
-
-            addItemComboBox();
-            btnTambahSuplier.setVisible(true);
-            btnUpdateSuplier1.setVisible(false);
-            btnDeleteSuplier2.setVisible(false);
-            btnResetSuplier3.setVisible(false);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-    }// GEN-LAST:event_btnDeleteSuplier2ActionPerformed
-
-    private void btnResetSuplier3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnResetSuplier3ActionPerformed
-        // TODO add your handling code here:
-        inputNPerusahaan.setText("");
-        inputEmail.setText("");
-        inputTelepon.setText("");
-        taAlamat.setText("");
-
-        btnTambahSuplier.setVisible(true);
-        btnUpdateSuplier1.setVisible(false);
-        btnDeleteSuplier2.setVisible(false);
-        btnResetSuplier3.setVisible(false);
-    }// GEN-LAST:event_btnResetSuplier3ActionPerformed
 
     private void btnUpdateKaryawanActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUpdateKaryawanActionPerformed
         // TODO add your handling code here:
@@ -2510,7 +2611,8 @@ public class Home extends javax.swing.JFrame {
                     department,
                     status,
                     password,
-                    modelKaryawan);
+                    modelKaryawan
+            );
 
             inputNIP.setText("");
             inputNKaryawan1.setText("");
@@ -2523,20 +2625,6 @@ public class Home extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }// GEN-LAST:event_btnTambahKaryawanActionPerformed
-
-    private void btnHapusPencarianCompanyActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnHapusPencarianCompanyActionPerformed
-        // TODO add your handling code here:
-        try {
-            inputCariPerusahaan.setText("");
-
-            companyController.loadCompany(modelSuplier);
-
-            btnCariSuplier.setVisible(true);
-            btnHapusPencarianCompany.setVisible(false);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }// GEN-LAST:event_btnHapusPencarianCompanyActionPerformed
 
     private void cbDepartemenActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cbDepartemenActionPerformed
         // TODO add your handling code here:
@@ -2625,6 +2713,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnHapusBarangEdit;
     private javax.swing.JButton btnHapusLaporan2;
     private javax.swing.JButton btnHapusPencarianBarang;
+    private javax.swing.JButton btnHapusPencarianBarang1;
     private javax.swing.JButton btnHapusPencarianCompany;
     private javax.swing.JButton btnHapusPencarianKaryawan;
     private javax.swing.JButton btnHapusPencarianLaporan;

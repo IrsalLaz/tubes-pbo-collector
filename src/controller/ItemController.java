@@ -306,12 +306,14 @@ public class ItemController {
             String searchQuery = "SELECT * FROM items i "
                     + "JOIN  categories c "
                     + "ON i.category_id = c.id "
-                    + "WHERE LOWER(employee_name) LIKE ? OR "
-                    + "LOWER(item_id) = ? OR "
+                    + "WHERE LOWER(i.item_name) LIKE ? OR "
+                    + "LOWER(i.item_id) = ? OR "
                     + "LOWER(c.category_name) LIKE ?";
 
             PreparedStatement ps = conn.prepareStatement(searchQuery);
             ps.setString(1, "%" + search.toLowerCase() + "%");
+            ps.setString(2, "%" + search.toLowerCase() + "%");
+            ps.setString(3, "%" + search.toLowerCase() + "%");
             ResultSet rs = ps.executeQuery();
 
             if (!rs.next()) {
@@ -522,24 +524,48 @@ public class ItemController {
         char category = 0;
 
         switch (textCategory) {
-            case "Consumer" -> {
+            case "Besi & Baja" -> {
+                category = 'B';
+                break;
+            }
+            case "Plaster" -> {
+                category = 'P';
+                break;
+            }
+            case "Cat" -> {
                 category = 'C';
                 break;
             }
-            case "Non-Durable" -> {
-                category = 'D';
+            case "Pagar" -> {
+                category = 'G';
                 break;
             }
-            case "Necessities" -> {
+            case "Alat" -> {
+                category = 'A';
+                break;
+            }
+            case "Kaca" -> {
+                category = 'K';
+                break;
+            }
+            case "Elektronik" -> {
+                category = 'E';
+                break;
+            }
+            case "Sanitasi" -> {
+                category = 'S';
+                break;
+            }
+            case "Bahan Bangunan" -> {
                 category = 'N';
                 break;
             }
-            case "Industrial" -> {
-                category = 'I';
+            case "Pompa" -> {
+                category = 'O';
                 break;
             }
-            case "Agricultural" -> {
-                category = 'A';
+            case "Roofing" -> {
+                category = 'R';
                 break;
             }
         }
@@ -558,24 +584,48 @@ public class ItemController {
         char category = 0;
 
         switch (textCategory) {
-            case "Consumer" -> {
+            case "Besi & Baja" -> {
+                category = 'B';
+                break;
+            }
+            case "Plaster" -> {
+                category = 'P';
+                break;
+            }
+            case "Cat" -> {
                 category = 'C';
                 break;
             }
-            case "Non-Durable" -> {
-                category = 'D';
+            case "Pagar" -> {
+                category = 'G';
                 break;
             }
-            case "Necessities" -> {
+            case "Alat" -> {
+                category = 'A';
+                break;
+            }
+            case "Kaca" -> {
+                category = 'K';
+                break;
+            }
+            case "Elektronik" -> {
+                category = 'E';
+                break;
+            }
+            case "Sanitasi" -> {
+                category = 'S';
+                break;
+            }
+            case "Bahan Bangunan" -> {
                 category = 'N';
                 break;
             }
-            case "Industrial" -> {
-                category = 'I';
+            case "Pompa" -> {
+                category = 'O';
                 break;
             }
-            case "Agricultural" -> {
-                category = 'A';
+            case "Roofing" -> {
+                category = 'R';
                 break;
             }
         }

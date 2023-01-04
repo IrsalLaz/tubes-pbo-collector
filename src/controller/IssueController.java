@@ -2,8 +2,11 @@ package controller;
 
 import java.awt.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import model.Employee;
 import model.Issue;
@@ -43,7 +46,7 @@ public class IssueController {
             if (result == JOptionPane.YES_OPTION) {
                 int id = getIssueIDIncremental();
                 Item item = getItem(textKodeBarang);
-                Employee employee = getEmployee(textEmployee);
+                Employee employee = getEmployeeWithName(textEmployee);
                 String employeeID = employee.getNip();
 
                 String insertQuery = "INSERT INTO issues("
@@ -67,6 +70,10 @@ public class IssueController {
                 ps.setTimestamp(6, tmp);
                 ps.executeUpdate();
 
+                java.util.Date date = new java.util.Date(tmp.getTime());
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = formatter.format(date);
+
                 itemController.setQuantity(
                         parentComponent,
                         textKodeBarang,
@@ -79,7 +86,8 @@ public class IssueController {
                         textStacks,
                         textDeskripsi,
                         item,
-                        employee
+                        employee,
+                        formattedDate
                 ));
 
                 int index = issueList.size() - 1;
@@ -88,7 +96,8 @@ public class IssueController {
                     issueList.get(index).getItem().getItem_name(),
                     issueList.get(index).getEmployee().getEmployee_name(),
                     issueList.get(index).getStacks(),
-                    issueList.get(index).getIssue_description()
+                    issueList.get(index).getIssue_description(),
+                    issueList.get(index).getTanggal_issue()
                 });
 
                 JOptionPane.showMessageDialog(
@@ -179,23 +188,23 @@ public class IssueController {
         try {
             conn = db.dbConn();
             String query = "DELETE FROM issues WHERE id =? ";
-            
+
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, oldID);
-            
+
             int rowAffected = ps.executeUpdate();
-            
-            if(rowAffected > 0) {
+
+            if (rowAffected > 0) {
                 JOptionPane.showMessageDialog(
-                        parentComponent, 
-                        "Delete data success", 
-                        "Delete Issues", 
+                        parentComponent,
+                        "Delete data success",
+                        "Delete Issues",
                         JOptionPane.INFORMATION_MESSAGE
                 );
             }
-            
+
             issueList.clear();
-            
+
             tableModelIssue.setRowCount(0);
             tableModelIssue.fireTableRowsDeleted(0, issueList.size());
             loadIssue(tableModelIssue);
@@ -204,9 +213,97 @@ public class IssueController {
         }
     }
 
+    public void searchIssue(
+            Component parentComponent,
+            String search,
+            DefaultTableModel tableModel,
+            JTextField inputCariIssue,
+            JButton btnHapusPencarian,
+            JButton btnCariIssue
+    ) {
+        try {
+            conn = db.dbConn();
+            String searchQuery = "SELECT * FROM issues i "
+                    + "JOIN items it ON it.item_id = i.item_id "
+                    + "JOIN employees em ON em.nip = i.nip "
+                    + "WHERE LOWER(it.item_name) LIKE ? OR "
+                    + "LOWER(em.employee_name) LIKE ? OR "
+                    + "LOWER(i.created_at) LIKE ?";
+
+            PreparedStatement ps = conn.prepareStatement(searchQuery);
+            ps.setString(1, "%" + search.toLowerCase() + "%");
+            ps.setString(2, "%" + search.toLowerCase() + "%");
+            ps.setString(3, "%" + search.toLowerCase() + "%");
+            ResultSet rs = ps.executeQuery();
+
+            if (!rs.next()) {
+                JOptionPane.showMessageDialog(
+                        parentComponent,
+                        """
+                                Data yang anda cari tidak ada, kata kunci yang bisa dimasukan
+                                1. Nama Employee
+                                2. Nama Barang
+                                3. Tanggal dengan format year-month-day""",
+                        "Search Data",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+
+                inputCariIssue.setText("");
+
+                return;
+            } else {
+                issueList.clear();
+
+                tableModel.setRowCount(0);
+                tableModel.fireTableRowsDeleted(0, issueList.size());
+
+                do {
+                    int issueId = rs.getInt("id");
+                    String itemID = rs.getString("item_id");
+                    String nip = rs.getString("nip");
+                    int stacks = rs.getInt("stacks");
+                    String description = rs.getString("description");
+                    Timestamp tmp = rs.getTimestamp("created_at");
+
+                    Item item = getItem(itemID);
+                    Employee employee = getEmployee(nip);
+
+                    java.util.Date date = new java.util.Date(tmp.getTime());
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    String formattedDate = formatter.format(date);
+
+                    addIssue(new Issue(
+                            issueId,
+                            stacks,
+                            description,
+                            item,
+                            employee,
+                            formattedDate
+                    ));
+
+                    int index = issueList.size() - 1;
+                    tableModel.addRow(new Object[]{
+                        issueList.get(index).getId(),
+                        issueList.get(index).getItem().getItem_name(),
+                        issueList.get(index).getEmployee().getEmployee_name(),
+                        issueList.get(index).getStacks(),
+                        issueList.get(index).getIssue_description(),
+                        issueList.get(index).getTanggal_issue()
+                    });
+                } while (rs.next());
+            }
+            btnHapusPencarian.setVisible(true);
+            btnCariIssue.setVisible(false);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
     public void loadIssue(DefaultTableModel tableModel) {
         try {
             conn = db.dbConn();
+
+            // can be replace with join query
             String query = "SELECT * FROM issues";
 
             Statement state = conn.createStatement();
@@ -223,16 +320,22 @@ public class IssueController {
                 String nip = rset.getString("nip");
                 int stacks = rset.getInt("stacks");
                 String description = rset.getString("description");
+                Timestamp tmp = rset.getTimestamp("created_at");
 
                 Item item = getItem(itemId);
                 Employee employee = getEmployee(nip);
+
+                java.util.Date date = new java.util.Date(tmp.getTime());
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = formatter.format(date);
 
                 addIssue(new Issue(
                         issueId,
                         stacks,
                         description,
                         item,
-                        employee
+                        employee,
+                        formattedDate
                 ));
 
                 int index = issueList.size() - 1;
@@ -241,7 +344,9 @@ public class IssueController {
                     issueList.get(index).getId(),
                     issueList.get(index).getItem().getItem_name(),
                     issueList.get(index).getEmployee().getEmployee_name(),
-                    issueList.get(index).getStacks()
+                    issueList.get(index).getStacks(),
+                    issueList.get(index).getIssue_description(),
+                    issueList.get(index).getTanggal_issue()
                 });
             }
         } catch (SQLException ex) {
@@ -273,7 +378,25 @@ public class IssueController {
         return null;
     }
 
-    private Employee getEmployee(String name) {
+    private Employee getEmployee(String nip) {
+        ArrayList<Employee> emList = employeeController.getEmployeeList();
+
+        for (Employee em : emList) {
+            if (em.getNip().equals(nip)) {
+                return new Employee(
+                        em.getStatus(),
+                        em.getEmployee_name(),
+                        em.getNip(),
+                        em.getId(),
+                        em.getDepartment_name()
+                );
+            }
+        }
+
+        return null;
+    }
+    
+    private Employee getEmployeeWithName(String name) {
         ArrayList<Employee> emList = employeeController.getEmployeeList();
 
         for (Employee em : emList) {
