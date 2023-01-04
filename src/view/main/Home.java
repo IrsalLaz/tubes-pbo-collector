@@ -11,6 +11,7 @@ import controller.ItemController;
 import controller.TransactionController;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -44,14 +45,15 @@ public class Home extends javax.swing.JFrame {
     // ID Generator
     private final IDGenerator idGenereator = new IDGenerator();
 
-    // Image
-    ImageIcon logoImg = new ImageIcon("logo.png");
-
     // Layout
     CardLayout cardLayout;
 
     public Home() {
         initComponents();
+        
+        Image icon = new ImageIcon(this.getClass().getResource("/assets/iconApp.png")).getImage();
+        this.setIconImage(icon);
+        this.setTitle("Collector");
 
         idGenereator.readLastNumber();
         idGenereator.readUsedID();

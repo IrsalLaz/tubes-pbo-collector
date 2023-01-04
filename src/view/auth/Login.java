@@ -3,6 +3,8 @@ package view.auth;
 import controller.AdminController;
 import javax.swing.JFrame;
 import java.awt.EventQueue;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class Login extends JFrame {
 
@@ -10,6 +12,10 @@ public class Login extends JFrame {
 
     public Login() {
         initComponents();
+
+        Image icon = new ImageIcon(this.getClass().getResource("/assets/iconApp.png")).getImage();
+        this.setIconImage(icon);
+        this.setTitle("Collector | login");
     }
 
     @SuppressWarnings("unchecked")
@@ -166,7 +172,7 @@ public class Login extends JFrame {
         }
         // </editor-fold>
         // </editor-fold>
-        
+
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
