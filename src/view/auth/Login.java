@@ -3,6 +3,8 @@ package view.auth;
 import controller.AdminController;
 import javax.swing.JFrame;
 import java.awt.EventQueue;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class Login extends JFrame {
 
@@ -10,6 +12,10 @@ public class Login extends JFrame {
 
     public Login() {
         initComponents();
+        Image icon = new ImageIcon(this.getClass().getResource("/assets/iconApp.png")).getImage();
+        this.setIconImage(icon);
+        this.setTitle("Collector | login");
+
     }
 
     @SuppressWarnings("unchecked")
@@ -39,7 +45,7 @@ public class Login extends JFrame {
         labelPassword.setText("Password");
 
         btnLogin.setBackground(new java.awt.Color(38, 38, 38));
-        btnLogin.setFont(new java.awt.Font("Manrope SemiBold", 0, 16)); // NOI18N
+        btnLogin.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -82,7 +88,7 @@ public class Login extends JFrame {
                 .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(btnLogin)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(38, 38, 38));

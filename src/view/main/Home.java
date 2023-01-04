@@ -6,6 +6,7 @@ import controller.DepartmentController;
 import controller.EmployeeController;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,15 +23,16 @@ public class Home extends javax.swing.JFrame {
     private final AdminController admin = new AdminController();
     private final DefaultTableModel modelSuplier = new DefaultTableModel();
     private final DefaultTableModel modelKaryawan = new DefaultTableModel();
-    ImageIcon logoImg = new ImageIcon("logo.png");
 
     CardLayout cardLayout;
 
     public Home() {
+
         initComponents();
-
         addItemComboBox();
-
+        Image icon = new ImageIcon(this.getClass().getResource("/assets/iconApp.png")).getImage();
+        this.setIconImage(icon);
+        this.setTitle("Collector");
         setupTable();
         setupButton();
 
