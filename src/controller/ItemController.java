@@ -20,6 +20,7 @@ public class ItemController {
 
     private static final ArrayList<Item> itemList = new ArrayList<>();
     private final CategoryController categoryController = new CategoryController();
+    private final TransactionController transactionController = new TransactionController();
     private Connection conn;
     private final DBConnection db = new DBConnection();
 
@@ -196,18 +197,12 @@ public class ItemController {
         try {
             conn = db.dbConn();
 
-            String itemID = updateID(textCategory);
+            String itemID = updateID(textOldItemID, textCategory);
             int categoryID = getCategoryID(textCategory);
             int lowStockLvl = getLowStockLevel(textQuantity);
 
-            String updateQuery = "UPDATE items"
-                    + "SET item_id=?, "
-                    + "category_id=?, "
-                    + "item_name=?, "
-                    + "quantity=?, "
-                    + "low_stock_level=?, "
-                    + "description=?, "
-                    + "updated_at=? "
+            String updateQuery = "UPDATE items "
+                    + "SET item_id=?, category_id=?, item_name=?, quantity=?, low_stock_level=?, description=?, updated_at=? "
                     + "WHERE item_id=?";
 
             PreparedStatement updatePs = conn.prepareStatement(updateQuery);
@@ -243,7 +238,7 @@ public class ItemController {
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(
                     parentComponent,
-                    "Gagal memperbarui data",
+                    "Gagal memperbarui data, silahkan periksa koneksi anda",
                     "Item Page",
                     JOptionPane.INFORMATION_MESSAGE
             );
@@ -253,7 +248,8 @@ public class ItemController {
     // Delete
     public void deleteItem(
             Component parentComponent,
-            DefaultTableModel tableModel,
+            DefaultTableModel tableModelItem,
+            DefaultTableModel tableModelTransaction,
             String textOldItemID
     ) {
         try {
@@ -262,6 +258,8 @@ public class ItemController {
 
             PreparedStatement deletePs = conn.prepareStatement(deleteQuery);
             deletePs.setString(1, textOldItemID);
+            
+            deleteID(textOldItemID);
 
             int rowAffected = deletePs.executeUpdate();
 
@@ -275,10 +273,14 @@ public class ItemController {
             }
 
             itemList.clear();
+            transactionController.getTransactionList().clear();
 
-            tableModel.setRowCount(0);
-            tableModel.fireTableRowsDeleted(0, itemList.size());
-            loadItem(tableModel);
+            tableModelItem.setRowCount(0);
+            tableModelTransaction.setRowCount(0);
+            tableModelItem.fireTableRowsDeleted(0, itemList.size());
+            tableModelTransaction.fireTableRowsDeleted(0, transactionController.getTransactionList().size());
+            loadItem(tableModelItem);
+            transactionController.loadTransaction(tableModelTransaction);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(
@@ -449,10 +451,10 @@ public class ItemController {
         }
     }
 
-    public void loadComboBoxItemCompany() {
+    public void loadComboBoxItemItem() {
         try {
             conn = db.dbConn();
-            String query = "SELECT * FROM employees";
+            String query = "SELECT * FROM items";
 
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -543,7 +545,6 @@ public class ItemController {
         }
 
         String id = IDGenerator.generateID(category);
-
         return id;
     }
 
@@ -553,7 +554,7 @@ public class ItemController {
         return lowStockLevel;
     }
 
-    private String updateID(String textCategory) {
+    private String updateID(String oldID, String textCategory) {
         char category = 0;
 
         switch (textCategory) {
@@ -579,14 +580,18 @@ public class ItemController {
             }
         }
 
-        String id = IDGenerator.updateID(category);
+        String id = IDGenerator.updateID(oldID, category);
 
         return id;
+    }
+    
+    private void deleteID(String id) {
+        IDGenerator.deleteID(id);
     }
 
     public void setQuantity(
             Component parentComponent,
-            String textKodeBarang, 
+            String textKodeBarang,
             int textAmount,
             DefaultTableModel tableModel
     ) {
@@ -597,23 +602,23 @@ public class ItemController {
                     + "SET quantity = ?, "
                     + "updated_at = ? "
                     + "WHERE item_id = ?";
-            
+
             for (Item item : itemList) {
-                if(item.getItem_id().equals(textKodeBarang)) {
+                if (item.getItem_id().equals(textKodeBarang)) {
                     newQty = item.getQuantity();
                 }
             }
-            
+
             newQty -= textAmount;
-            
+
             PreparedStatement ps = conn.prepareStatement(updateQtyQuery);
             ps.setInt(1, newQty);
-            
+
             Timestamp tmp = new Timestamp(System.currentTimeMillis());
-            
+
             ps.setTimestamp(2, tmp);
             ps.setString(3, textKodeBarang);
-            
+
             int rowAffected = ps.executeUpdate();
 
             if (rowAffected > 0) {

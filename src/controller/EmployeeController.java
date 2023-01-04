@@ -447,7 +447,8 @@ public class EmployeeController {
                 tableModel.addRow(new Object[]{
                     employeeList.get(index).getNip(),
                     employeeList.get(index).getEmployee_name(),
-                    employeeList.get(index).getDepartment_name(),});
+                    employeeList.get(index).getDepartment_name()
+                });
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

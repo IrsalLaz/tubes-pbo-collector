@@ -21,6 +21,8 @@ public class CategoryController {
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             
+            categoryList.clear();
+            
             while(rs.next()) {
                 int id = rs.getInt("id");
                 String categoryName = rs.getString("category_name");

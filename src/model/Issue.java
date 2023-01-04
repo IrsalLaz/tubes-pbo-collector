@@ -9,16 +9,22 @@ package model;
  * @author panji
  */
 public class Issue {
+    private int id;
     private int stacks;
     private String issue_description;
     private Item item;
     private Employee employee;
 
-    public Issue(int stacks, String issue_description, Item item, Employee employee) {
+    public Issue(int id, int stacks, String issue_description, Item item, Employee employee) {
+        this.id = id;
         this.stacks = stacks;
         this.issue_description = issue_description;
         this.item = item;
         this.employee = employee;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getStacks() {
@@ -35,6 +41,10 @@ public class Issue {
 
     public Employee getEmployee() {
         return employee;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setStacks(int stacks) {

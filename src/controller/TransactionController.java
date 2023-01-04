@@ -8,9 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import model.Company;
 import model.Item;
@@ -59,6 +57,7 @@ public class TransactionController {
                         textDescription,
                         tableModelItem
                 );
+                
                 String idBarang = getItemID(textNamaBarang);
                 int idCompany = getCompanyID(textNamaPerusahaan);
                 Company getCompany = getCompany(textNamaPerusahaan);
@@ -133,7 +132,6 @@ public class TransactionController {
             String textKodeBarang,
             String textCompany,
             int textAmount,
-            String textNamaBarang,
             String textAction,
             DefaultTableModel tableModelTransaction,
             DefaultTableModel tableModelItem
@@ -160,7 +158,7 @@ public class TransactionController {
                         + "action, "
                         + "created_at, "
                         + "updated_at) "
-                        + "VALUES(?,?,?,?,?)";
+                        + "VALUES(?,?,?,?,?,?)";
 
                 PreparedStatement ps = conn.prepareStatement(insertQuery);
                 ps.setString(1, textKodeBarang);
@@ -187,7 +185,7 @@ public class TransactionController {
                         textAmount,
                         tableModelItem
                 );
-
+                
                 int index = transactionList.size() - 1;
                 tableModelTransaction.addRow(new Object[]{
                     transactionList.get(index).getItem().getItem_name(),
@@ -296,6 +294,7 @@ public class TransactionController {
 //            );
 //        }
 //    }
+    
     private void addTransaction(Transaction transaction) {
         transactionList.add(transaction);
     }
@@ -359,7 +358,7 @@ public class TransactionController {
             if (it.getItem_id().equals(textKodeBarang)) {
                 return new Item(
                         it.getItem_id(),
-                        it.getCategory_name(),
+                        it.getItem_name(),
                         it.getQuantity(),
                         it.getLow_stock_level(),
                         it.getDescription(),
