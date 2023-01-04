@@ -3,6 +3,8 @@ package view.auth;
 import controller.AdminController;
 import javax.swing.JFrame;
 import java.awt.EventQueue;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 public class Login extends JFrame {
 
@@ -10,6 +12,10 @@ public class Login extends JFrame {
 
     public Login() {
         initComponents();
+
+        Image icon = new ImageIcon(this.getClass().getResource("/assets/iconApp.png")).getImage();
+        this.setIconImage(icon);
+        this.setTitle("Collector | login");
     }
 
     @SuppressWarnings("unchecked")
@@ -82,7 +88,7 @@ public class Login extends JFrame {
                 .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(btnLogin)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(38, 38, 38));
@@ -96,7 +102,7 @@ public class Login extends JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -104,7 +110,7 @@ public class Login extends JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(258, 258, 258)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addContainerGap(307, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,6 +172,7 @@ public class Login extends JFrame {
         }
         // </editor-fold>
         // </editor-fold>
+
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);

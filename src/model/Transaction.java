@@ -1,27 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
-/**
- *
- * @author panji
- */
 public class Transaction {
-    private String amount;
+    private int amount;
     private String action;
     private Item item;
     private Company company;
+    private String tanggal_transaksi;
 
-    public Transaction(String amount, String action, Item item, Company company) {
+    public Transaction(int amount, String action, Item item, Company company, String tanggal_transaksi) {
         this.amount = amount;
         this.action = action;
         this.item = item;
         this.company = company;
+        this.tanggal_transaksi = tanggal_transaksi;
     }
 
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
@@ -37,7 +31,11 @@ public class Transaction {
         return company;
     }
 
-    public void setAmount(String amount) {
+    public String getTanggal_transaksi() {
+        return tanggal_transaksi;
+    }
+
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -51,5 +49,9 @@ public class Transaction {
 
     public void setCompany(Company company) {
         this.company = company;
-    }    
+    }
+
+    public void setTanggal_transaksi(String tanggal_transaksi) {
+        this.tanggal_transaksi = tanggal_transaksi;
+    }
 }
